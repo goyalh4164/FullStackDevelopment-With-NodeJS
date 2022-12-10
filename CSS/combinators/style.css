@@ -1,0 +1,22 @@
+/* Adjacent sibling combinator */
+/* In this type A+B ,it means that it will all the elements that come directly after A*/
+/* in the below example only (those) element are effected which come directly after h2 */
+h2 + p{
+    font-weight: bold;
+}
+/* General sibling combinator */
+/* In this type of combinator A ~ B it will select (all) the B that comes (directly after) A */
+h2 ~ p{
+    color: red;
+}
+/* child combinator */
+/* In this type of combinator A > B it will select (all) the B that comes (directly inside) A */
+section > p{
+    background-color: aqua;
+}
+/* Descendant combinator */
+/* In this type of combinator A B(we use space) it will select all the B that comes (inside) of A */
+/* it will select all the p that are inside of section*/
+section p{
+    font-family: monospace;
+}
