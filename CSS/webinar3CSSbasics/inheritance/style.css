@@ -1,0 +1,26 @@
+*{
+    background-color: lightcyan;
+}
+.cl1{
+    background-color: lightcoral;
+}
+/*IMP Anything that you apply to the '*' will be overridden by that you apply to the particular class*/
+#id1{
+    background-color: lightgreen;
+}
+/* id takes precedence over class and class takes precendance over the '*' */
+/* This thing will always happen if you write CSS in any manner */
+div{
+    background-color: lightseagreen;
+}
+/* IMP (id > class > element> '*') order of precendance*/
+/* if you write the same id or class with same property redefined then css will read the last defined same property of same element like we have defined #id1 background-color 2 times then it will consider the color that is defined atlast ,this same property applies to the class also*/
+#id1{
+    background-color: lightsteelblue;
+}
+.cl1{
+    background-color: lightskyblue;
+}
+
+
+

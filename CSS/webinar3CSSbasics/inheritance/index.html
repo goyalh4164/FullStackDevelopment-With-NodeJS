@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- it will change the background color as it is defined after the link of style so it will be readed by the browser later.......it is just like you are defining the same element with same property later on...nothing difference.....if you write it before the link then it will not chnage the background color -->
+    <style>
+        *{
+            background-color: #aaaaff;
+        }
+    </style>
+</head>
+<body>
+    <div class="cl1" id="id1">Div 1</div>
+    <div class="cl1" id="id2">Div 2</div>
+    <div class="cl2" id="id3">Div 3</div>
+    <!-- this below style is known as inline style -->
+    <!-- this will take precedance over all the styles whether they are defined using the ids ,classes or internal CSS basically it is the father of all-->
+    <div style="background-color: #778899;">Div 4</div>
+</body>
+</html>
