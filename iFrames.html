@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- iFrames are used to Embed other pages within the same page we provide it a container to use it as a screen it comes bydefault with a border we can use frameborder="0" to remove the border from it -->
+    <!-- we need to provide height and width to the iFrame for its working -->
+<!-- if the page height is more then the i frame height then it comes with the scroll bar -->
+<!--IMP iframes are inline elements  -->
+    <h1>IFrames</h1>
+    <h2>Open in frame</h2>
+    <ul>
+        <!-- by using name and target we can display the page in the frams on the same page -->
+        <!-- by providing target =_parent it opens the link on the parent of iFrame -->
+        <li><a target="_parent" href="./links.html">Links</a></li>
+        <li><a target="frame1" href="./Inner-links.html">Inner Links</a></li>
+    </ul>
+    <!-- we use name with iframes to use it as a window page -->
+    <iframe name="frame1" src="./Inner-links.html" frameborder="1" width="400" height="400"></iframe>
+    <iframe src="./lists.html" frameborder="1" height="400" width="400"></iframe>
+    <!-- you can also connect other webpages also like this -->
+    <!-- <iframe src="https://www.youtube.com" frameborder="0" height="400" width="400"></iframe> -->
+
+
+</body>
+</html>
