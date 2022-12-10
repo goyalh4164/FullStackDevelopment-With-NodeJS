@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- writing simple form elements we will create form after sometime first we will learn the prereqiste of forms -->
+    <!-- for forms we use name and for js we use ID -->
+    <!-- input elements are inline -->
+    <input type="text">
+    <br>
+    <input type="password">
+    <br>
+    <input type="email">
+    <br>
+    <!-- for providing minimum and maximum value to the number -->
+    <input min=100 max=200 type="number">
+    <br>
+    <input type="date">
+    <br>
+    <!-- if in inspect section you change the type to text form color then it will show the hexadecimal value of the color -->
+    <input type="color">
+    <br>
+    <input type="file">
+    <br>
+    <!-- if you want to select by clicking on the word rather than the checkbox then you can use label and you have to provide id to the input tag and also you must paste that id into the for tag inside the label button -->
+
+    <input type="checkbox" id="a"><label for="a">a</label>
+    <input type="checkbox" id="b"><label for="b">b</label>
+    <input type="checkbox" id="c"><label for="c">c</label>
+    <br>
+    <!-- radio is used when we want to choose one out of many and checkbox is used when we have to choose many out of many -->
+    <!-- since we want to select only one from the radio buttons so we use "name" inside the radio so that we can tell the website that all these radio buttons belong to the same question -->
+    <input type="radio" name="channel" id="s1"><label for="s1">Apple</label> 
+    <input type="radio" name="channel" id="s2"><label for="s2">Ball</label> 
+    <input type="radio" name="channel" id="s3"><label for="s3">Cat</label> 
+    <br>
+    <!-- what you write inside the textarea will appear as the default text you can erase it when you want -->
+    <!-- you can also define initially the rows and cols for dimension of the text area -->
+    <textarea cols="30" rows="10">Default text</textarea>
+    <br>
+    <!-- Dropdown menu -->
+    <!-- you can also allow multiple selecting when you write "multiple" inside the select tag -->
+    <select >
+        <option value="">Delhi</option>
+        <option value="">Mumbai</option>
+        <option value="">Kolkata</option>
+        <option value="">Gujrat</option>
+    </select>
+    <!-- example for mutiple selecting -->
+    <select multiple >
+        <option value="">Delhi</option>
+        <option value="">Mumbai</option>
+        <option value="">Kolkata</option>
+        <option value="">Gujrat</option>
+    </select>
+    <!-- example of the form with tags and buttons -->
+    <!-- this action is done when we press submit button -->
+    <form action="https://google.com/search?=">
+        <input type="text" name="q">
+        <button type="submit">Search</button>
+        <button type="reset">Clear</button>
+    </form>
+
+
+</body>
+</html>
