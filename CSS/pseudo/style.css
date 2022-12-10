@@ -1,0 +1,29 @@
+.box{
+    height: 40px;
+    width: 40px;
+    background-color: orange;
+    padding: 10px;
+    color: darkslategray;
+}
+/* pseudo classes */
+/* hover class */
+/* this class works when you hover your mouse over it */
+.box:hover{
+    background-color: darkgreen;
+    color: beige;
+    font-weight: bold;
+}
+/* active class */
+/* this works when you click at it or holds the click on the element */
+.box:active{
+    height: 100px;
+    width: 100px;
+    font-size: 25pt;
+    background-color: blue;
+}
+/* focus class */
+/* this works when you enter some data or the keyboard is in use */
+input:focus{
+    font-size: 30pt;
+    width: 200px;
+}
