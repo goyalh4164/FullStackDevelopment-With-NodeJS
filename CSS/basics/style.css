@@ -1,0 +1,8 @@
+div{
+    color: red;
+    font-size: 26pt;
+    /* pt stands for point 14pt is default size */
+}
+p{
+    background-color: azure;
+}
