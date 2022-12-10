@@ -1,0 +1,30 @@
+/* IMP '*' and body selector are not same '*' provides property to each and every element while body tag just provides the property to itself only */
+/* universal selector */
+*{
+    margin-top: 40px;
+    color: red;
+}
+body{
+    margin-top: 80px;
+}
+/* element selector */
+div{
+    margin-left: 30px;
+}
+p{
+    font-size: 30px;
+}
+/* ID selector */
+#p2{
+    font-family: 'Courier New', Courier, monospace;
+}
+#p3{
+    margin-left: 20px;
+}
+/* Class selector */
+.osmpara{
+    background-color: lightpink;
+}
+.bigpara{
+    font-size: 50px     ;
+}
