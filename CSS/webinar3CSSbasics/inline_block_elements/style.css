@@ -1,0 +1,17 @@
+.box{
+    margin: 20px;
+    padding: 10px;
+    /* border creates its own space it neither takes space from margin neither from padding it creates its own space */
+    border: solid black 2px;
+}
+#div1{
+    background-color: lightgreen;
+}
+#div2{
+    background-color: lightsalmon;
+}
+#div3{
+    background-color: lightcyan;
+}
+/* IMP margin area gets the color from the parent element */
+/* IMP padding area gets the color itself only */

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Block element are those element which takes the entire horizontal strip space  -->
+    <!-- Inline elements are those elements which only takes required space and can also come inbetween other inline elements -->
+    <!-- if you just write the text without any tag then that text is known as bare text it belongs to the body attribute...the property that you provide to the body it will be applied on it -->
+    <!-- you can also convert block to inline and vice versa -->
+    <!-- Block elements have advantage that they can set their margin,padding,border for themself -->
+    <p style="display: inline;">Para 1</p> some more text
+    <b style="display: block;">bold text</b>
+    <!-- we have two powerful elements which are div and span -->
+    <!-- div is used when you block property and span is used when you need inline property -->
+    <div>This is a div</div>
+    some <span>this is a span</span> text
+    <!-- Now studying padding and margin -->
+    <div class="box" id="div1">
+        One
+        <div class="box" id="div2">
+            two
+            <div class="box" id="div3">
+                three
+            </div>
+        </div>
+    </div>
+    <!-- Since HTML reads from top to bottom so outer elements will get their space first then the inner elements -->
+    
+
+
+</body>
+</html>
