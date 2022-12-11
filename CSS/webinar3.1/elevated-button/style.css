@@ -1,0 +1,32 @@
+.btn{
+    /* Normal Properties */
+    margin: 100px;
+    background-color: peru;
+    color: white;
+    font-size: 30pt;
+    padding: 50px;
+    width: 200px;
+
+    /* box-shadow */
+    /* first one is colour and other two are x and y shadow width and third is for bluring the shadow */
+    box-shadow: grey 10px 10px 10px;
+    /* if you want that the animaton should take time when it is coming back to normal from hover */
+    transition: 0.8s;
+    /* border radius for smothing edges */
+    border-radius: 10px;
+
+    
+}
+.btn:hover{
+    /* how much it move in x and y direction */
+    transform: translate(-10px, -10px);
+    box-shadow: grey 20px 20px 20px;
+    /* transition time for hover */
+    transition: 0.5s;
+}
+.btn:active{
+    transform: translate(5px,5px);
+    box-shadow: gray 5px 5px 3px;
+    /* transition time for active */
+    transition: 0.2s;
+}
