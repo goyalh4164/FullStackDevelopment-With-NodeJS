@@ -17,18 +17,25 @@
     /* this inline and block property is used */
     display: inline-block;
     /*below properties used for animation: name duration  iteration-count; */
-    animation: bounce 10s;
+    animation: bounce 2s;
     /* you can also provide iteration count infinite */
-    animation-iteration-count: 2;
+    animation-iteration-count: infinite;
 }
 .one{
+    /* ease-in starts slow end fast */
     animation-timing-function: ease-in;
 }
 .two{
+    /* ease-out start fast end slow */
     animation-timing-function: ease-out;
 }
 .three{
+    /* linear means it moves at constant speed */
     animation-timing-function: linear;
+}
+.four{
+    /* by default animation-timing-function is ease-in-out */
+    animation-timing-function: ease-in-out;
 }
 
 /* ------------Animations-------- */
