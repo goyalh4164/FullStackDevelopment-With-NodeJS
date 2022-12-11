@@ -1,0 +1,11 @@
+.outer{
+    color: blue;
+}
+.middle{
+    color: red;
+    display: none;
+}
+.inner{
+    color: skyblue;
+    display: none;
+}
