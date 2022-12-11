@@ -1,0 +1,28 @@
+.box{
+    height: 100px;
+    width: 100px;
+    margin: 30px;
+    background-color: brown;
+}
+/* Meida query means when the screen width meets the media query conditions then that style also come in existance */
+/* range is from 0 to 900px */
+/* Min width is written in ascending order used for mobile approach */
+/* max width is written in desending order used for web approach when you develop web for destop first and later make it responsive for mobile */
+/*IMP in media query the order matters you must write media query is descending order...because let's take an example you have written 600px before 900px then we know that 900 is always smaller then the 600 so the css will take 900px property always and 600px media query will never come into existance */
+/*IMP  TODO  use flexbox and media query for some responsiveness like grid*/
+@media(max-width:1200px){
+    .box{
+        background-color: dodgerblue;
+    }
+}
+@media(max-width: 900px){
+    .box{
+        background-color: green;
+    }
+}
+/* range is from 0 to 600px */
+@media(max-width: 600px){
+    .box{
+        background-color: purple;
+    }
+}
