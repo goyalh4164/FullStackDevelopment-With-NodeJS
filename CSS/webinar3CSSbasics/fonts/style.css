@@ -1,0 +1,22 @@
+#para1{
+    font-size: 30px;
+    /* font-size: 5vh; 1vh=1/100 of window height */
+}
+#para2{
+    /*in  monospace each character takes the same amount of space*/
+    /* font-family: monospace; */
+    /* font-family: sans-serif; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#para3{
+    font-style: italic;
+    /* font-weight: lighter; */
+    font-weight: bold;
+}
+#para4{
+    /* it will be used to provide space between the words */
+    word-spacing: 5px;
+    /* it will be used to provide space between the letters of the word */
+    letter-spacing: 2px;
+}
+
