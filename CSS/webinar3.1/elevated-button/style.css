@@ -1,3 +1,5 @@
+/* IMP all transitions happens with respect to the original or static designs defined on it */
+/* CodePen is a good website for some designs */
 .btn{
     /* Normal Properties */
     margin: 100px;
@@ -28,5 +30,7 @@
     transform: translate(5px,5px);
     box-shadow: gray 5px 5px 3px;
     /* transition time for active */
-    transition: 0.2s;
+    /* we can add different times for different transitions example is below */
+    transition: transform 0.2s,box-shadow 0.9s;
+    /* in this case transform of .btn will take 0.2s and box-shadow will take 0.9s */
 }
