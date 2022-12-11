@@ -1,0 +1,51 @@
+/* Remember you can't set height and width of inline elements...it just takes up the space that is needed by its data inside it */
+/* IMP inline-block it is used when you want both properties from block and inline elements i.e it takes only space that is required and with the help of block property you can give it a height also */
+.container{
+    background-color: lightpink;
+    height: 400px;
+    width: 400px;
+    margin: 30px;
+
+}
+/* by default there is some space between the divs inside the container.....you can remove it setting font-size=0 inside the parent class */
+.item{
+    height: 40px;
+    width: 40px;
+    margin: 27px;
+    background-color: darkcyan;
+    border: solid black 1px;
+    /* this inline and block property is used */
+    display: inline-block;
+    /*below properties used for animation: name duration  iteration-count; */
+    animation: bounce 10s;
+    /* you can also provide iteration count infinite */
+    animation-iteration-count: 2;
+}
+.one{
+    animation-timing-function: ease-in;
+}
+.two{
+    animation-timing-function: ease-out;
+}
+.three{
+    animation-timing-function: linear;
+}
+
+/* ------------Animations-------- */
+/* basically we create frames for our animations */
+@keyframes bounce{
+    /* when 0% of our animation is done */
+    0%{
+        
+        transform: scale(1.2);
+
+    }
+    50%{
+        transform: translateY(300px);
+        background-color: blue;
+
+    }
+    100%{
+        background-color: papayawhip;
+    }
+}
