@@ -1,0 +1,49 @@
+.container{
+    /* to turn something into flex set display equal to flex*/
+    /* it will arrange all the items row wise */
+    /* flex is block element by default */
+    /* if you want that it should also behave like inline then you can set display to inline-flex*/
+    /* IMP page to visit */
+    /* https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+    margin: 40px;
+    display: flex;
+    height: 400px;
+    width: 400px;
+    background-color: bisque;
+    /* flex wrap is defined for internal contents */
+    flex-wrap: wrap;
+
+    /* by default flex-direction: row; */
+    flex-direction: row;
+    /* in total we can achieve 8 combinations using flex wrap or wrap reverse and flex-direction also exist of 4 types so 4*2=8combinations we can acheive together */
+    /* Justify-content is used when you have to arrange flex-items in a row-wise manner or you want to pass the instructions in a row wise manner */
+    /* single row instructions are passed */
+    /* justify-content is used for space management or for distributing extra space evenly on the flex items ...it works on order*/
+    /* flex-start is default justify-content */
+    justify-content:space-evenly;
+    /* align-items within the row perperndicularly*/
+    /* it is used when some items have different height or padding or any thing if you write align-items:baseline then they are aligned on the basis of the text in them */
+    /* this line written below will arrange the items of the basis of the text in same horizontal line */
+    align-items: baseline;
+    /* align content work on all the rows it is basically cross axis alignment */
+    align-content:space-between;
+    /* if you want everything in center then set align-content and justify content to center */
+
+
+
+
+
+
+}
+.item{
+    border: dotted black 2px;
+    margin: 10px;
+    height: 50px;
+    width: 50px;
+    background-color: lightseagreen;
+    font-size: 20pt;
+    color: white;
+    
+    
+    
+}
