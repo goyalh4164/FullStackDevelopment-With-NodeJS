@@ -1,0 +1,21 @@
+li{
+    font-weight: bold;
+}
+/* direct child */
+ul>li{
+    color: blue;
+}
+ol>li{
+    color: red;
+}
+ul li li{
+    font-style: italic;
+}
+/* ul will be selected only if it is directly after ol */
+ol + ul{
+    background-color: green;
+}
+/*  it will color all the ul after ol need not to be directly after ul*/
+ol~ul{
+    background-color: yellow;
+}
