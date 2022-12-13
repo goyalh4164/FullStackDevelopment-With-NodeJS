@@ -28,4 +28,13 @@ function area(height,width){
 console.log('area 3,4',area(3,4)) 
 
 console.log('area 3',area(4)) 
+
 // Note if statement will not execute if it has internal parameter =false,0,null,undefined
+// you can not define same function again if it is then it will take the last defined function polyporfism takes inside the function only
+// you can also call the function with more no. of parameters by using the arguments keyword 
+// Basically arguments is the array of arguments
+function hello(){
+    console.log('Hello World'+' '+arguments[0]+' '+arguments[1])
+}
+hello(1,2)
+hello('harsh','himanshu')
