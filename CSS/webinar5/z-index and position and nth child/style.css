@@ -1,0 +1,69 @@
+.container{
+    height: auto;
+    width: 400px;
+    margin: 10px;
+    padding: 10px;
+    background-color: linen;
+}
+.item{
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+    background-color: mediumblue;
+    color: white;
+    font-size: 20pt;
+}
+.one>.four{
+    background-color: brown;
+    /* Position relative means that it will move w.r.t its relative position and no other element can acquire it's position */
+    position: relative;
+    /* IMP Remember top text takes precedance over the lower text i.e left will work but right will not work in case of left and right or top and up*/
+    left: 50px;
+    /* this below statement is of no use */
+    /* right: 50px; */
+    top: px;
+}
+.one>.five{
+    background-color: aquamarine;
+    /* Position absolute means that the space leaved by that element will going to be get acqired by the remaining element */
+    /* Also in absolute positioning the positioning happens w.r.t top of the parent */
+    position: absolute;
+    top:40px;
+    left: 100px;
+    z-index: 2;
+}
+/* relative from original position */
+/* absolute from parent */
+.one>.six{
+    /* Also in fixed positioning the positioning happens w.r.t top of the parent */
+    /* Here it is fixed w.r.t window it will always follow the constraint */
+    position: fixed;
+    top:40px;
+    left: 100px;
+    z-index: 1;
+}
+.container>.one{
+    /* if you don't mention any left right top bottom in the position sticky then it will behave just as default i.e static */
+    position: sticky;
+    /* But if sticky violetes this below condition then it will behave as a fixed position */
+   
+    top: 30px;
+    bottom: 150px;
+
+}
+/* nth child */
+/* it means that every item which is 5th child of it's parent will be brown in colour */
+.item:nth-child(5n){
+
+    background-color: brown;
+}
+/* it will color alternate containers i.e every 2nd child*/
+.container:nth-child(2n){
+    background-color: aqua;
+}
+/* z-index */
+
+
+/* Note z-index only works for the position elements.....i.e the elements must have some position that when they overlap what will going too the result..which will show upper */
+/* Basically more the z-index number more the preference it will have to show upper */
+/* z-index can be negative also */
