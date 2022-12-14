@@ -30,4 +30,5 @@ let g2=`Good Morning ${n}`
 // one more example of dollar
 let s7=`10 +2 = ${10+2}`;
 console.log(s7);
+// Dollar works only with backticks
 
