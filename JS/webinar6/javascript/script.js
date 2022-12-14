@@ -15,7 +15,7 @@ let obj3=Object.create(obj2)
 // in the above example obj2.__proto__ = obj1
 //searcing in objects
 //steps
-
+// This below code is just used for reading not writing........for writing i have pasted image in IMP folder image number =3 and 4 refers to the single image
 /*  obj2.a -->it will try to find a in obj2
            -->if not found,
            -->it will try to find it in obj2.__proto__
