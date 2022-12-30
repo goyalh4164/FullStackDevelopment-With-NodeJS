@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    
+    <title>Hello, world!</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- when you want to divide without entering the col-lg or something else then just write the col class the number of times of write it it make the equal partition itself -->
+            <div class="col bg-primary">div1</div>
+            <div class="col bg-secondary">div2</div>
+            <div class="col bg-success">div3</div>
+        </div>
+        <div class="row">
+            <!-- if you want that middle col should take 6 grid and rest will be divided equally then just write col-6 in the middle -->
+            <div class="col bg-danger">div1</div>
+            <div class="col-6 bg-warning">div2</div>
+            <div class="col bg-primary">div3</div>
+        </div>
+        <div class="row">
+            <!-- if you want that your col should take only the space that is occupied by the content then write col-auto -->
+            <div class="col bg-primary">div1</div>
+            <div class="col-auto bg-secondary">Col only occupies this amount of content</div>
+            <div class="col bg-success">div3</div>
+            <div class="col bg-danger">div4</div>
+        </div>
+        <!-- if you want only 2 columns in a row then write row-cols-2 -->
+        <div class="row row-cols-2">
+            <!-- if you want that middle col should take 6 grid and rest will be divided equally then just write col-6 in the middle -->
+                <div class="col bg-danger">div1</div>
+                <div class="col bg-warning">div2</div>
+                <div class="col bg-success">div3</div>
+                <div class="col bg-primary">div4</div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <!-- align items start -->
+            <div class="row bg-warning align-items-start" style="min-height: 200px;">
+            <!-- By default the col takes the height equal to the row but if you want that this should't happen then write align-items-start -->
+            <div class="col bg-primary">div1</div>
+            <div class="col bg-danger">div2</div>
+            <div class="col bg-success">div3</div>
+            <div class="col bg-info">div4</div>
+        </div>
+        </div>
+    <div class="container-fluid">
+        <!-- align items end -->
+        <div class="row bg-danger align-items-end" style="min-height: 200px;">
+        <!-- By default the col takes the height equal to the row but if you want that this should't happen then write align-items-start -->
+        <div class="col bg-primary">div1</div>
+        <div class="col bg-danger">div2</div>
+        <div class="col bg-success">div3</div>
+        <div class="col bg-info">div4</div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <!-- align items center -->
+        <div class="row bg-secondary align-items-center" style="min-height: 200px;">
+        <!-- By default the col takes the height equal to the row but if you want that this should't happen then write align-items-center -->
+        <div class="col bg-primary">div1</div>
+        <div class="col bg-danger">div2</div>
+        <div class="col bg-success">div3</div>
+        <div class="col bg-info">div4</div>
+        </div>
+    </div>
+    <!-- if you want that every item should take a particular position then use align-self property inside the col of each div -->
+    <div class="container-fluid">
+        <!-- align items center -->
+        <div class="row bg-warning " style="min-height: 200px;">
+        
+        <div class="col bg-primary align-self-end">div1</div>
+        <div class="col bg-danger align-self-center">div2</div>
+        <div class="col bg-success">div3</div>  <!-- no align property is used so it will occupy the same height as row-->
+        <div class="col bg-info align-self-start">div4</div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <!-- for vertical alignment we use justify-content class inside the row -->
+    <!-- justify-content-start -->
+    <!-- same as default -->
+    <div class="row bg-danger justify-content-start" style="min-height: 200px;">
+        <div class="col-4 bg-success">div1</div>
+        <div class="col-4 bg-info">div2</div>
+    </div>
+</div>
+<div class="container-fluid">
+    <!-- for vertical alignment we use justify-content class inside the row -->
+    <!-- justify-content-center -->
+    <div class="row bg-danger justify-content-center" style="min-height: 200px;">
+        <div class="col-4 bg-success">div1</div>
+        <div class="col-4 bg-info">div2</div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <!-- for vertical alignment we use justify-content class inside the row -->
+    <!-- justify-content-around for spacing between the items -->
+    <div class="row bg-primary justify-content-around" style="min-height: 200px;">
+        <div class="col-4 bg-success">div1</div>
+        <div class="col-4 bg-info">div2</div>
+    </div>
+</div>
+<div class="container-fluid">
+    
+    <!-- justify-content-between -->
+    <div class="row bg-danger justify-content-between" style="min-height: 200px;">
+        <div class="col-4 bg-success">div1</div>
+        <div class="col-4 bg-info">div2</div>
+    </div>
+</div>
+
+    
+    <!-- Bootstrap Script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>    
