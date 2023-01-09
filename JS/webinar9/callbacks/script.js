@@ -11,7 +11,7 @@
 //but when you set timeout then order will change
 function doSomething(done){
     console.log('1.doing something')
-    setTimeout( done,0); //while checking of this is going on meanwhile 3rd statement gets printed
+    setTimeout( done,0); //while checking of this is going on meanwhile 3rd statement gets printed It is basically out of the stack call
     
 }
 doSomething(() =>{
