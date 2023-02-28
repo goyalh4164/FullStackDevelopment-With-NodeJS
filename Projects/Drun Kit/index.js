@@ -8,6 +8,8 @@ for(var i=0;i<numberOfDrumButtons;i++){
         // this.style.color="white";  //if you want to change the text color when user clicks the button
         var buttonInnerHTML=this.innerHTML;
         makeSound(buttonInnerHTML);
+        //Adding animation to our buttons
+        buttonAnimation(buttonInnerHTML);
         
     });
 }
@@ -18,6 +20,7 @@ for(var i=0;i<numberOfDrumButtons;i++){
 //when it is clicked using the keyboard
 document.addEventListener("keydown",function(event){
     makeSound(event.key);
+    buttonAnimation(event.key);
 })
 function makeSound(key){
     switch(key){
@@ -53,4 +56,16 @@ function makeSound(key){
             console.log(buttonInnerHTML)
     }
     
+}
+function buttonAnimation(currentKey){
+    //storing the current button
+    var activeButton=document.querySelector("."+currentKey);
+    activeButton.classList.add("pressed");
+    //setting timeout to remove the pressed class after certain time
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    },100);
+    //added timeout succesfully using settimeout function
+
+
 }
