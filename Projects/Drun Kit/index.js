@@ -9,8 +9,8 @@ for(var i=0;i<numberOfDrumButtons;i++){
         var buttonInnerHTML=this.innerHTML;
         switch(buttonInnerHTML){
             case "w":
-                var tom1=new Audio("sounds/tom-1.mp3");
-                tom1.play();
+                var tom1=new Audio("sounds/tom-1.mp3"); //created the object of Audio class
+                tom1.play();  //called the method play on object from Audio class
                 break;
             case "a":
                 var tom2=new Audio("sounds/tom-2.mp3");
