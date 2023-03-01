@@ -7,6 +7,9 @@ app.get("/",function(req,res){
     res.sendFile(__dirname+"/index.html")
 })
 // to give response to the form
+app.get("/bmicalculator",function(req,res){
+    res.sendFile(__dirname+"/bmiCalculator.html")
+})
 app.post("/",function(req,res){
     console.log(req.body) //it is very useful to perform action on the upcoming data
     //the above output
@@ -19,6 +22,12 @@ app.post("/",function(req,res){
     var result=num1+num2;
 
     res.send("Addition of the above numbers is "+ result);
+})
+app.post("/bmicalculator",function(req,res){
+    var weight=req.body.weight;
+    var heigth=req.body.heigth;
+    var bmiIndex=(weight/(heigth*heigth));
+    res.send("<h1>Your BMI is :"+bmiIndex);
 })
 app.listen(3000,function(){
     console.log("Server Started")
