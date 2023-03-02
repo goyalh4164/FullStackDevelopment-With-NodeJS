@@ -1,10 +1,19 @@
 const express=require("express");
 const https=require("https"); // To use the API
+const bodyParser=require("body-parser") //To read the response from the post of the index.html
 const app=express();
 
+app.use(bodyParser.urlencoded({extended :true})) //necessary code
+
 app.get("/",function(req,res){
-    const query="Delhi";
-    const url="https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid=ebe40922610017bb96421256fe31f8b6";
+  res.sendFile(__dirname+"/index.html");
+})
+
+app.post("/",function(req,res){
+    const query=req.body.cityName;
+    const apiKey="ebe40922610017bb96421256fe31f8b6";
+    const url="https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid="+apiKey;
+    
     https.get(url,function(response){  //This response gives the information about the API url
         //extracting information from the API
         response.on("data",function(data){  
@@ -20,14 +29,15 @@ app.get("/",function(req,res){
             res.write("<h1>The weather is currently "+weatherDescription+"</h1>");
             res.write("<h1>The temperature in "+query+" is : "+temp+"degree celsius </h1>");
             res.write("<img src="+imageURL+">");
+            
             res.send();
 
         })
-        console.log(response.statusCode)
+        
     })
-    
 })
 
 app.listen(3000,function(){
     console.log("Server running on port 3000")
 })
+
