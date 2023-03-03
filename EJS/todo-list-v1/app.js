@@ -9,12 +9,13 @@ app.set('view engine','ejs'); //setted ejs our engine
 app.get("/",function(req,res){
     var today=new Date();
     var currentDay=today.getDay();
-    if(currentDay==0 || currentDay==6){
-        res.send("<h1>Enjoy it's a weekend!</h1>");
+    if(currentDay==6 || currentDay==0){
+        currentDay="Weekend";
     }  //( 0 for sunday)
     else{
-        res.sendFile(__dirname+"/index.html")
+        currentDay="Weekday";
     }
+    res.render("list",{kindOfDay: currentDay});
 })
 
 app.listen(3000,function(){
