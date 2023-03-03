@@ -7,7 +7,13 @@
     <title>To Do List</title>
 </head>
 <body>
-    <h1>It's a <%=kindOfDay%>!</h1>  
+    <% if(kindOfDay === "Sunday" || kindOfDay === "Sunday"){ %>
+        <h1 style="color: purple;"><%=kindOfDay%> ToDo List</h1>  
+    <% } else{ %>
+        <h1 style="color: blue;"><%=kindOfDay%> ToDo List</h1>  
+    <% } %>
+    <!-- Covered the JS logic i.e if and else statement with Scriplet tag to tell the EJS file that it's a JS part -->
+    
     <!-- kindOfDay will act as a key  -->
 </body>
 </html>
