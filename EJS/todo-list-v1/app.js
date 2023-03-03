@@ -9,12 +9,8 @@ app.set('view engine','ejs'); //setted ejs our engine
 app.get("/",function(req,res){
     var today=new Date();
     var currentDay=today.getDay();
-    if(currentDay==6 || currentDay==0){
-        currentDay="Weekend";
-    }  //( 0 for sunday)
-    else{
-        currentDay="Weekday";
-    }
+    var dayList=["Sunday","Monday","Tuesday","Wednesday","Thrusday","Friday","Saturday"];
+    currentDay=dayList[currentDay];
     res.render("list",{kindOfDay: currentDay});
 })
 
