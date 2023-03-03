@@ -3,6 +3,8 @@ const bodyParser=require("body-parser")
 
 const app=express();
 
+app.set('view engine','ejs'); //setted ejs our engine
+
 //IMP:: Here we need multiple Files for different Weedays so we will send the files through the hpls of EJS
 app.get("/",function(req,res){
     var today=new Date();
