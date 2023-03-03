@@ -10,9 +10,9 @@
     <h1><%= kindOfDay %></h1>
     <!-- Covered the JS logic i.e if and else statement with Scriplet tag to tell the EJS file that it's a JS part -->
     <ul>
-        <li>Buy Food</li>
-        <li>Cook Food</li>
-        <li>Eat Food</li>
+        <% for (var i=0; i<newListItems.length ;i++ ){ %>
+            <li> <%= newListItems[i] %></li>
+        <% } %>
     </ul>
     <form action="/" method="post">
         <input type="text" name="newItem">

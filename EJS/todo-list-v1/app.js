@@ -3,6 +3,8 @@ const bodyParser=require("body-parser")
 
 const app=express();
 
+var items=["Buy Food","Get Food","Eat Food"]  //making item global to remove the scope problem
+
 app.set('view engine','ejs'); //setted ejs our engine
 
 app.use(bodyParser.urlencoded({extended :true}))
@@ -17,12 +19,13 @@ app.get("/",function(req,res){
     };
     var day =today.toLocaleDateString("en-US",options);
     
-    res.render("list",{kindOfDay: day});
+    res.render("list",{kindOfDay: day,newListItems :items});
 })
 
 app.post("/",function(req,res){
-    var item=req.body.newItem;
-    console.log(item)
+    item=req.body.newItem;  //saving the newItem    
+    items.push(item);
+    res.redirect("/");
 })
 
 app.listen(3000,function(){
