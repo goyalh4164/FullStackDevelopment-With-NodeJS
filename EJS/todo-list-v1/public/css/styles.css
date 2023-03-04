@@ -1,6 +1,6 @@
 html {
   background-color: #E4E9FD;
-  background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
+  background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);  /*to make gradient in your website*/
   min-height: 1000px;
   font-family: 'helvetica neue';
 }
@@ -30,16 +30,16 @@ h1 {
   border-bottom: 1px solid #F1F1F1;
 }
 
-.item:last-child {
+.item:last-child {  /*This will going to look for all the items in the div and apply the style to the last item*/
   border-bottom: 0;
 }
 
-input:checked+p {
+input:checked+p {  /*Here we are targeting all the para that come immidiately after the checked input*/
   text-decoration: line-through;
   text-decoration-color: #A683E3;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"] {  /*It selects the element by the checkbox attribute*/
   margin: 20px;
 }
 
@@ -84,7 +84,7 @@ input[type="text"]:focus {
   box-shadow: inset 0 -3px 0 0 #A683E3;
 }
 
-::placeholder {
+::placeholder {  /*It targets the placeholder and styles them*/
   color: grey;
   opacity: 1;
 }
