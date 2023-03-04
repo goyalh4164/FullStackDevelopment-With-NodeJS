@@ -8,6 +8,7 @@ var items=["Buy Food","Get Food","Eat Food"]  //making item global to remove the
 app.set('view engine','ejs'); //setted ejs our engine
 
 app.use(bodyParser.urlencoded({extended :true}))
+app.use(express.static("public"))
 
 //IMP:: Here we need multiple Files for different Weedays so we will send the files through the hpls of EJS
 app.get("/",function(req,res){
