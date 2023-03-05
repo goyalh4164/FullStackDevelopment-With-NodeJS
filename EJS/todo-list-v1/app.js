@@ -3,8 +3,9 @@ const bodyParser=require("body-parser")
 const date=require(__dirname+"/date.js")
 
 const app=express();
-
-var items=["Buy Food","Get Food","Eat Food"]  //making item global to remove the scope problem
+//Remember after making array as const it is possible to push more items inside the array without any error
+//But you can't push if you are declayering the brand new error as const
+const items=["Buy Food","Get Food","Eat Food"]  //making item global to remove the scope problem
 var workItems=[];
 
 app.set('view engine','ejs'); //setted ejs our engine
