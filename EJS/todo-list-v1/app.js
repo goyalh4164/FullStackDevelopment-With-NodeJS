@@ -1,5 +1,6 @@
 const express=require("express");
 const bodyParser=require("body-parser")
+const date=require(__dirname+"/date.js")
 
 const app=express();
 
@@ -13,14 +14,9 @@ app.use(express.static("public"))
 
 //IMP:: Here we need multiple Files for different Weedays so we will send the files through the hpls of EJS
 app.get("/",function(req,res){
-    var today=new Date();
-    var options={
-        weekday : "long",
-        day:"numeric",
-        month:"long"
-    };
-    var day =today.toLocaleDateString("en-US",options);
     
+    // console.log(date); //it will print all the data that we will export from that particular module
+    let day =date(); //created our own module
     res.render("list",{listTitle: day,newListItems :items});
 })
 
