@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <div>
+<%- include("header") -%>
+<div>
         <h1 class="box" id="heading"><%= listTitle %></h1>
     </div>
     <!-- Covered the JS logic i.e if and else statement with Scriplet tag to tell the EJS file that it's a JS part -->
@@ -23,8 +14,6 @@
                 <input placeholder="New Item" type="text" name="newItem" autocomplete="off">
                 <button type="submit" name="list" value=<%=listTitle %>>+</button>
             </form>
+        
     </div>
-    
-    
-</body>
-</html>
+<%- include("footer") -%>
