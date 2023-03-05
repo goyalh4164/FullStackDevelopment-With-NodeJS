@@ -1,7 +1,7 @@
 
 
 //when you actually add parenthesis then you are actually calling the function else you are just passing it or getting details about it
-module.exports.getDate = function(){
+exports.getDate = function(){
     var today=new Date();
     var options={
         weekday : "long",
@@ -10,7 +10,7 @@ module.exports.getDate = function(){
     };
     return today.toLocaleDateString("en-US",options);
 }
-module.exports.getDay= function (){
+exports.getDay= function (){
     var today=new Date();
     var options={
         weekday : "long",
