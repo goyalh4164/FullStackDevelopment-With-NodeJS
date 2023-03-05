@@ -16,7 +16,8 @@ app.use(express.static("public"))
 app.get("/",function(req,res){
     
     // console.log(date); //it will print all the data that we will export from that particular module
-    let day =date(); //created our own module
+    let day =date.getDate(); //created our own module
+    console.log(date.getDay());  //working clearly providing day in the console window
     res.render("list",{listTitle: day,newListItems :items});
 })
 
