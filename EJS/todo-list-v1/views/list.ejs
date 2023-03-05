@@ -9,7 +9,7 @@
 </head>
 <body>
     <div>
-        <h1 class="box" id="heading"><%= kindOfDay %></h1>
+        <h1 class="box" id="heading"><%= listTitle %></h1>
     </div>
     <!-- Covered the JS logic i.e if and else statement with Scriplet tag to tell the EJS file that it's a JS part -->
     <div class="box">
@@ -21,7 +21,7 @@
             <% } %>
             <form class="item" action="/" method="post">
                 <input placeholder="New Item" type="text" name="newItem" autocomplete="off">
-                <button type="submit">+</button>
+                <button type="submit" name="list" value=<%=listTitle %>>+</button>
             </form>
     </div>
     
