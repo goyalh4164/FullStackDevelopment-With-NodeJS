@@ -22,7 +22,7 @@ const fruit=new Fruit({
   review : "Good Fruit"
 });
 
-fruit.save();
+// fruit.save();  to save the data
 
 //Creating one more schema for person
 //Defined the basic Schema
@@ -39,4 +39,23 @@ const person =new Person({
   age:20
 });
 
-person.save();
+// person.save();
+
+//adding more then one data element in one go
+
+// User model
+const User = mongoose.model('User', {
+  name: { type: String },
+  age: { type: Number }
+});
+
+// Function call
+User.insertMany([
+  { name: 'Gourav', age: 20},
+  { name: 'Kartik', age: 20},
+  { name: 'Niharika', age: 20}
+]).then(function(){
+  console.log("Data inserted")  // Success
+}).catch(function(error){
+  console.log(error)      // Failure
+});
