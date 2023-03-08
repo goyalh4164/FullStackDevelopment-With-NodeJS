@@ -23,3 +23,20 @@ const fruit=new Fruit({
 });
 
 fruit.save();
+
+//Creating one more schema for person
+//Defined the basic Schema
+
+const personSchema =new mongoose.Schema({
+  name :String,
+  age : Number
+});
+
+const Person = mongoose.model("Person",personSchema);  //it converts Person to plural form i.e people
+
+const person =new Person({
+  name:"Harsh",
+  age:20
+});
+
+person.save();
