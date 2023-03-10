@@ -43,7 +43,7 @@ btnWait.onclick=function(){
     //This approach is just like an alarm when it alarms then above task gets performed till then the processor can be used by other processes also
     //This is time sharing(i.e multi threading approach)
     //This is working awesome
-
+    //Single JS file gets only single thread that's why problem with while loop occured because that loop stuck there in calculating the time there while set timeout works like an alarm without busy waiting
     
 }
 
