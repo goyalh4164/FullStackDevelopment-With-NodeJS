@@ -1,0 +1,17 @@
+.box{
+    padding: 50px;
+    margin:50px;
+}
+.content{
+    height: 500px;
+    width: 800px;
+    background-color: cyan;
+    color: blue;
+    border: 2px solid black;
+    border-radius: 10%;
+    position: relative;
+    left: 10%;
+}
+#printer{
+    padding: 20px;
+}

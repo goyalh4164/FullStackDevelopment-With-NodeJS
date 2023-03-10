@@ -1,0 +1,13 @@
+let printer=document.getElementById('printer');
+let content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, quos. Harum ratione aliquid non ad, incidunt sapiente? Inventore, et dicta? Maiores sequi quae incidunt facere ex provident iure qui fugit nihil exercitationem laboriosam accusantium quo illo officia tenetur nostrum, explicabo iusto molestias ab necessitatibus architecto. Adipisci ipsa blanditiis sit deleniti esse culpa natus saepe voluptatibus cum assumenda enim officiis iste, voluptas, ducimus veritatis dicta. Quidem commodi saepe dicta sed ullam, dolorum ea minus accusantium distinctio dolores sunt earum corrupti voluptates reiciendis? Quia, nulla accusantium sequi repellat officia similique officiis magnam culpa fugit, pariatur dignissimos non. Incidunt consequatur autem sapiente temporibus, beatae non impedit asperiores qui facere. In aperiam quo labore dolorum error reiciendis non quae. Natus nam voluptatum aperiam, quos officia consequuntur repudiandae culpa beatae quae quas libero recusandae eveniet blanditiis totam facere. Porro eveniet modi ratione amet hic, tempora dicta voluptas odio, optio possimus ullam, recusandae velit deserunt debitis maxime sunt at et nulla libero perspiciatis. Minus consequuntur harum, voluptas maiores modi officia rerum odio enim autem! Numquam, hic facilis praesentium asperiores esse tempore recusandae cumque. Reiciendis quaerat dolore veniam rerum praesentium. Atque esse corrupti temporibus quos sed ipsam optio, incidunt, exercitationem rerum, nemo sequi labore animi dicta neque nostrum expedita totam? Molestiae nemo porro odio hic ut maxime suscipit consequuntur quod molestias. Sit, eveniet quis. A dolore illum pariatur, quibusdam officiis quae optio quos possimus ex ab exercitationem voluptatibus qui accusantium quam dicta sed. Vitae, laborum perferendis voluptatum iusto libero culpa sint esse? Ducimus quod excepturi soluta doloremque exercitationem maiores deleniti dicta veritatis consequuntur, velit voluptatum id est tempora aliquam iste vel earum quia. Atque vitae, dolore blanditiis dolores quidem numquam aspernatur magni quam quod quasi nesciunt natus libero quisquam recusandae dicta enim omnis odit fugiat beatae doloribus neque. Tempore, et quam itaque animi laudantium fugit qui fuga."
+let content_length=content.length
+let i=0;
+// var refreshIntervalId = setInterval(fname, 10000);
+
+// /* later */
+// clearInterval(refreshIntervalId);
+var refrestIntervalID=setInterval(function(){
+    if(i>=content_length) clearInterval(refreshIntervalId);
+    printer.innerHTML+=content[i];
+    i++;
+},100)
