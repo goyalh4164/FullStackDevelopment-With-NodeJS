@@ -32,3 +32,4 @@ let obj={
 }
 // Basically "this" will point to the object from where it is being called
 // it also depends on the console how we are calling the this keyword
+//If you are calling the "this" function from the obj.functionname then the this keyword will point to the obj in which that function is stored else if you are stroing it in some variable and then you are calling it then it will depends on the place of calling from the function is called by the use of variable
