@@ -16,4 +16,15 @@ app.get('/greet',(req,res)=>{
   res.send("Good morning "+ person)      
 })
 
+app.get('/form',(req,res)=>{
+  res.sendFile(__dirname+'/files/form.html')
+})
+
+app.post('/greet',(req,res)=>{
+  let person='Guest';
+  if(req.query.person)
+  // http://localhost:3000/greet/?person=harsh_goyal
+  person=req.query.person
+  res.send("Good morning "+ person)  
+})
 app.listen(3000)
