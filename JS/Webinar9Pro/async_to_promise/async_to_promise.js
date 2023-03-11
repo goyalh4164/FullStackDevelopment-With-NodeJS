@@ -1,12 +1,16 @@
-function someAsyncTask (callback){
-    setTimeout(
-        function(){
-            callback();
-        },
-     3000)
+function someAsyncTask(callback){
+    console.log("Beginning of task");
+    setTimeout(function(){
+        console.log("End of task");
+        callback();
+    },3000)
 }
-someAsyncTask(function (){
-    console.log("We did some task")
-})
 
-//How promises work
+let someTaskPromise =function(){
+    return new Promise(function(resolve,reject){
+        someAsyncTask(resolve);
+    })
+}
+someTaskPromise().then(()=>{
+    console.log("Task completed succesfully")
+})
