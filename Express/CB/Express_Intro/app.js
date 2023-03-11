@@ -26,6 +26,12 @@ app.get('/form',(req,res)=>{
   res.sendFile(__dirname+'/files/form.html')
 })
 
+app.get('/:city/welcome',(req,res)=>{
+  // here :city is behaving like variable route
+  // req.params.city it contains the city 
+  res.send('Welcome to this '+req.params.city + ' !');
+})
+
 app.post('/greet',(req,res)=>{
   let person='Guest';
   console.log(req.body) //req.body contains name objects
