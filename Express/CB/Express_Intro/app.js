@@ -1,7 +1,13 @@
 // console.log(typeof express)  -->function
 const { query } = require('express')
 var express = require('express')
+
+//to read from the req.body
+
+
 var app = express()
+
+app.use(express.urlencoded({extended :true}))
 
 app.get('/', function (req, res) {
   res.send('hello world')
@@ -22,9 +28,10 @@ app.get('/form',(req,res)=>{
 
 app.post('/greet',(req,res)=>{
   let person='Guest';
-  if(req.query.person)
+  console.log(req.body) //req.body contains name objects
+  if(req.body.person)
   // http://localhost:3000/greet/?person=harsh_goyal
-  person=req.query.person
-  res.send("Good morning "+ person)  
+  person=req.body.person
+  res.send("Good Evening "+ person)  
 })
 app.listen(3000)
