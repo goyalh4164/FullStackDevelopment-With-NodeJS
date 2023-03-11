@@ -32,6 +32,11 @@ app.get('/:city/welcome',(req,res)=>{
   res.send('Welcome to this '+req.params.city + ' !');
 })
 
+app.get('/:person/:action',(req,res)=>{
+  // http://localhost:3000/Harsh/kindness
+  res.send("Thankyou "+ req.params.person +" for "+ req.params.action + "!");
+})
+
 app.post('/greet',(req,res)=>{
   let person='Guest';
   console.log(req.body) //req.body contains name objects
