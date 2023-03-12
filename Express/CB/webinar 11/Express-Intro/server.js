@@ -8,10 +8,16 @@ app.get('/',(req,res)=>{
 
 function middleware1 (req,res ,next){
     console.log(req.url);
-    res.send('kuchbhi')
+    console.log("I am middleware 1")
+    next(); //calling the next middleware on the stack
 }
 
-app.get('/x',middleware1);
+function middleware2 (req,res ,next){
+    console.log(req.hostname);
+    res.send('I am middleware 2')
+}
+
+app.get('/x',middleware1,middleware2);
 
 app.listen(3000,()=>{
     console.log('server started at localhost 3000')
