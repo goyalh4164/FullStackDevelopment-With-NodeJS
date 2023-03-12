@@ -9,9 +9,9 @@ const app = express()
 app.use('/xyz',express.static(__dirname + '/public')) //concept of mounting
 
 app.get('/hello', (req, res) => {
-    
-    
-    res.send('Hello World ')
+    let user='Guest'
+    if(req.query.user) {user=req.query.name};    
+    res.send('Hello World ' + user)
 })
 
 
