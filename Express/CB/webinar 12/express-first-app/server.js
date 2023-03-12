@@ -6,7 +6,7 @@ const app = express()
 
 // app.use(express.static(__dirname + '/public'))  //providing the path of the public folder to the express
 
-app.use('/xyz',express.static(__dirname + '/public'))
+app.use('/xyz',express.static(__dirname + '/public')) //concept of mounting
 
 app.get('/hello', (req, res) => {
     
