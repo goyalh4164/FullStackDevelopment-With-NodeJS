@@ -1,3 +1,5 @@
+const { raw } = require("express")
+
 let inpCode = document.getElementById('inpCode')
 let btnEncode = document.getElementById('btnEncode')
 let btnEncrypt = document.getElementById('btnEncrypt')
@@ -20,6 +22,6 @@ function encryptData(rawData) {
     /*
         TODO: actually encrypt data
         logic: turn lowercase chars to uppercase and viceversa 
-     */
+     */ 
     return 'XXXXXXXX'
 }
