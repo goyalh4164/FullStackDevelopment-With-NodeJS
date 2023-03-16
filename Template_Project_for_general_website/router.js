@@ -22,7 +22,12 @@ Router.post("/login",async(req,res)=>{
     try{
         const checkemail =req.body.email;
         const databasedata = await user.findOne({email : checkemail});
-        res.send(databasedata);
+        if(databasedata!=null){
+            res.send(databasedata);
+        }
+        else{ //if email is not present
+            res.status(400).send("Incorrect email");
+        }
     }
     catch(e){
         res.status(400).send(error);
