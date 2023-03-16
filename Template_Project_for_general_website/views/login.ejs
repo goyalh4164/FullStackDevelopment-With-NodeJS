@@ -1,0 +1,10 @@
+<%- include("../partials/meta") %>
+
+<form class="bg-gray-100 ml-[40rem] w-[20rem] mt-[15rem]" action="/login" method="post">
+    <!-- name should exactly match with the database naming convention -->
+   <div><input type="text" name="email" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required></div>
+   <div><input type="password" name="password" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required></div>
+   <button class="bg-black text-white font-extrabold mt-3" type="submit">login</button>
+</form>
+</body>
+</html>

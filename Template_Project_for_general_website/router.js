@@ -1,4 +1,5 @@
 const express = require("express");
+const { findOne } = require("./database");
 const Router =express.Router();
 const user=require("./database");
 
@@ -10,10 +11,21 @@ Router.post("/register",async(req,res)=>{
     try{
         const data=new user(req.body);
         const savedata =await data.save();
-        res.send(savedata);
+        res.render("login")
     }
     catch(e){
-        
+        res.status(400).send(error);
+    }
+})
+
+Router.post("/login",async(req,res)=>{
+    try{
+        const checkemail =req.body.email;
+        const databasedata = await user.findOne({email : checkemail});
+        res.send(databasedata);
+    }
+    catch(e){
+        res.status(400).send(error);
     }
 })
 
