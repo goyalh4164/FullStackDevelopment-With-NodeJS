@@ -3,7 +3,7 @@ const Router =express.Router();
 const user=require("./database");
 
 Router.get("/",(req,res)=>{
-    res.send("hello")
+    res.render("index")
 })
 
 module.exports = Router;
