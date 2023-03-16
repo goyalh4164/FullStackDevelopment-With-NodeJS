@@ -1,7 +1,11 @@
+const { urlencoded } = require("express");
 const express = require("express");
 const app = express();
 const route = require("./router");
 const port=3000;
+
+app.use(express.json()); //to save the data in JSON form
+app.use(express.urlencoded({extended : false})) //to save the data in JSON form
 
 app.set("view engine","ejs")
 
