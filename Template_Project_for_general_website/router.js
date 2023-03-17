@@ -2,6 +2,7 @@ const express = require("express");
 const { findOne } = require("./database");
 const Router =express.Router();
 const user=require("./database");
+const bcrypt =require("bcryptjs")
 
 Router.get("/",(req,res)=>{
     res.render("index")
@@ -32,8 +33,9 @@ Router.post("/login",async(req,res)=>{
         const checkemail =req.body.email;
         const passworduser =req.body.password;
         const databasedata = await user.findOne({email : checkemail});
+        const ismatch =await bcrypt.compare(passworduser,databasedata.password); //comparing the encryted password withthe given password
         if(databasedata!=null){
-            if(databasedata.password === passworduser){
+            if(ismatch){
                 res.render("contact");
             }
             else{
