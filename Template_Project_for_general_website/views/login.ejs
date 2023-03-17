@@ -1,7 +1,8 @@
 <%- include("../partials/meta") %>
+<%- include("../partials/navbar") %>
 
 <form class="bg-gray-100 ml-[40rem] w-[20rem] mt-[15rem]" action="/login" method="post">
-    <!-- name should exactly match with the database naming convention -->
+   <!-- name should exactly match with the database naming convention -->
    <div><input type="text" name="email" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required placeholder="Email"></div>
    <div><input type="password" name="password" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required placeholder="Password"></div>
    <button class="bg-black text-white font-extrabold mt-3" type="submit">login</button>
