@@ -22,6 +22,10 @@ Router.post("/register",async(req,res)=>{
         res.status(400).send(e);
     }
 })
+//Took a different step from tutorial
+Router.get("/login",(req,res)=>{
+    res.render("login");
+})
 
 Router.post("/login",async(req,res)=>{
     try{
