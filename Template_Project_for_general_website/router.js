@@ -12,6 +12,10 @@ Router.post("/register",async(req,res)=>{
     try{
         const data=new user(req.body);
         if(data.password === data.confpassword ){
+            const emailvalidation = await user.findOne({email : data.email})
+            if(emailvalidation){
+                res.send("Email Already Exist ..Login Directly")
+            }
             const savedata =await data.save();
             res.render("login")
         }
