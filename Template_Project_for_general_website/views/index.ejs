@@ -2,10 +2,11 @@
 <body>
     <form class="bg-gray-100 ml-[40rem] w-[20rem] mt-[15rem]" action="/register" method="post">
          <!-- name should exactly match with the database naming convention -->
-        <div><input type="text" name="name" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required></div>
-        <div><input type="text" name="email" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required></div>
-        <div><input type="text" name="phone" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required></div>
-        <div><input type="text" name="password" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required></div>
+        <div><input type="text" name="name" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required placeholder="Name"></div>
+        <div><input type="text" name="email" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required placeholder="Email"></div>
+        <div><input type="text" name="phone" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required placeholder="Phone Number"></div>
+        <div><input type="password" name="password" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required placeholder="Password"></div>
+        <div><input type="password" name="confpassword" class="bg-black text-white font-extrabold mt-3" autocomplete="off" required placeholder="Confirm Password"></div>
         <button class="bg-black text-white font-extrabold mt-3" type="submit">submit</button>
     </form>
 </body>

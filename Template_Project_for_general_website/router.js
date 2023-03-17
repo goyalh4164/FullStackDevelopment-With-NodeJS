@@ -10,23 +10,35 @@ Router.get("/",(req,res)=>{
 Router.post("/register",async(req,res)=>{
     try{
         const data=new user(req.body);
-        const savedata =await data.save();
-        res.render("login")
+        if(data.password === data.confpassword ){
+            const savedata =await data.save();
+            res.render("login")
+        }
+        else{
+            res.status(400).send("Password Not Matched");
+        }
     }
     catch(e){
-        res.status(400).send(error);
+        res.status(400).send(e);
     }
 })
 
 Router.post("/login",async(req,res)=>{
     try{
         const checkemail =req.body.email;
+        const passworduser =req.body.password;
         const databasedata = await user.findOne({email : checkemail});
         if(databasedata!=null){
-            res.send(databasedata);
+            if(databasedata.password === passworduser){
+                res.render("contact");
+            }
+            else{
+                res.status(400).send("Incorrect Password");
+            }
+
         }
         else{ //if email is not present
-            res.status(400).send("Incorrect email");
+            res.status(400).send("Incorrect email or Password");
         }
     }
     catch(e){
