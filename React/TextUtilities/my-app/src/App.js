@@ -10,8 +10,8 @@ function App() {
   return (
     <>
     <Navbar title="TextUtils"/>
-    <About/>
     <TextForm heading="Enter the text to analyze" />
+    <About/>
     </>
   );
 }
