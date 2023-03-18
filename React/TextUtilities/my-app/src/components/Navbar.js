@@ -28,6 +28,9 @@ export default function Navbar(props) {
   )
 }
 
+// proptypes are used to define the datatype
+//  of the props that must be used
+
 Navbar.propTypes ={
     title :PropTypes.string,
     aboutText : PropTypes.string
