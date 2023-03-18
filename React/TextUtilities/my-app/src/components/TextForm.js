@@ -27,6 +27,11 @@ export default function TextForm(props) {
       navigator.clipboard.writeText(text.value);
     }
 
+    const handleExtraSpaces = ()=>{
+      let newText=text.split(/[ ]+/);  //it will form array of words having one or more then one space between them
+      setText(newText.join(" ")); // it will join all the words having one space in between
+    }
+
     const handleOnChange =(event)=>{
         setText(event.target.value);
     }
@@ -46,6 +51,7 @@ export default function TextForm(props) {
         <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert to Lowercase</button>
         <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear</button>
         <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy</button>
+        <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>Remove Spaces</button>
     </div>
     <div className="container my-3">
       <h1>Your text Summary</h1>
