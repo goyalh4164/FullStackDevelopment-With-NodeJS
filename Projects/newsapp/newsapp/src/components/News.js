@@ -157,8 +157,9 @@ export class News extends Component {
         <h1>NewsMonkey - Top Headlines </h1>
         <div className="row">
         {this.state.articles.map((element)=>{
-        return <div className="col-md-4">
-          <NewsItem title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl="TODO"/>
+          {/* Since we are using map we need to use key to uniquely identify the news item */}
+        return <div className="col-md-4" key={element.url}>
+          <NewsItem key={element.url} title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url}/>
           </div>
         })}
         </div>
