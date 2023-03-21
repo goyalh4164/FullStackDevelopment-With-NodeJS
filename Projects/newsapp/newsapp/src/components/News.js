@@ -42,10 +42,7 @@ export class News extends Component {
     })
   }
   handleNextClick =async ()=>{
-    if((this.state.page + 1) > Math.ceil(this.state.totalResults/20)){
-      //Do Nothing
-    }
-    else{
+    
       let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page+1}&pageSize=20`
       let data =await fetch(url);
       let parsedData = await data.json()
@@ -55,7 +52,7 @@ export class News extends Component {
         page : this.state.page+1
       })
     }
-  }
+  
 
 
 
@@ -63,7 +60,7 @@ export class News extends Component {
     return (
       <div>
         <div className="container my-3">
-        <h1>NewsMonkey - Top Headlines </h1>
+        <h1 className='text-center'>NewsMonkey - Top Headlines </h1>
         <div className="row">
         {this.state.articles.map((element)=>{
           {/* Since we are using map we need to use key to uniquely identify the news item */}
@@ -75,7 +72,7 @@ export class News extends Component {
         </div>
         <div className="container d-flex justify-content-between">
           <button disabled={this.state.page<=1} type='button' className='btn btn-dark' onClick={this.handlePreviousClick}>&larr; Previous</button>
-          <button type='button' className='btn btn-dark' onClick={this.handleNextClick}>Next &rarr;</button>
+          <button disabled={((this.state.page + 1) > Math.ceil(this.state.totalResults/20))} type='button' className='btn btn-dark' onClick={this.handleNextClick}>Next &rarr;</button>
         </div>
       </div>
     )
