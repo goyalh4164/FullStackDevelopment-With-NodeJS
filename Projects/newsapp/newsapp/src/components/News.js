@@ -6,8 +6,20 @@ export class News extends Component {
   render() {
     return (
       <div>
-        
-        <NewsItem title="News.com" description="Fastest News"/>
+        <div className="container my-3">
+        <h1>NewsMonkey - Top Headlines </h1>
+        <div className="row">
+            <div className="col-md-4">
+            <NewsItem title="News.com" description="Fastest News"/>
+            </div>
+            <div className="col-md-4">
+            <NewsItem title="News.com" description="Fastest News"/>
+            </div>
+            <div className="col-md-4">
+            <NewsItem title="News.com" description="Fastest News"/>
+            </div>
+        </div>
+        </div>
       </div>
     )
   }
