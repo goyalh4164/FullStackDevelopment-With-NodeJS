@@ -6,8 +6,8 @@ export class News extends Component {
   render() {
     return (
       <div>
-        This is a news component
-        <NewsItem/>
+        
+        <NewsItem title="News.com" description="Fastest News"/>
       </div>
     )
   }
