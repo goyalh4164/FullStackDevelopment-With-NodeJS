@@ -16,21 +16,23 @@ export class News extends Component {
     this.state={
       articles :[],
       loading :false,
-      page:1
+      page:1,
+      totalResults : 1
     }
   }
 
   async componentDidMount(){
     // it will run when the complete render method has run completely
-    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page}`
+    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page}&pageSize=20`
     let data =await fetch(url);
     let parsedData = await data.json()
     console.log(parsedData);
     this.setState({articles :parsedData.articles})
+    this.state.totalResults = parsedData.totalResults;
 
   }
   handlePreviousClick =async ()=>{
-    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page-1}`
+    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page-1}&pageSize=20`
     let data =await fetch(url);
     let parsedData = await data.json()
     console.log(parsedData);
@@ -40,16 +42,19 @@ export class News extends Component {
     })
   }
   handleNextClick =async ()=>{
-    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page+1}`
-    let data =await fetch(url);
-    let parsedData = await data.json()
-    console.log(parsedData);
-    this.setState({
-      articles :parsedData.articles,
-      page : this.state.page+1
-    })
-
-
+    if((this.state.page + 1) > Math.ceil(this.state.totalResults/20)){
+      //Do Nothing
+    }
+    else{
+      let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page+1}&pageSize=20`
+      let data =await fetch(url);
+      let parsedData = await data.json()
+      console.log(parsedData);
+      this.setState({
+        articles :parsedData.articles,
+        page : this.state.page+1
+      })
+    }
   }
 
 
