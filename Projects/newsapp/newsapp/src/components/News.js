@@ -150,6 +150,16 @@ export class News extends Component {
     }
   }
 
+  async componentDidMount(){
+    // it will run when the complete render method has run completely
+    let url="https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627"
+    let data =await fetch(url);
+    let parsedData = await data.json()
+    console.log(parsedData);
+    this.setState({articles :parsedData.articles})
+
+  }
+
   render() {
     return (
       <div>
@@ -159,7 +169,7 @@ export class News extends Component {
         {this.state.articles.map((element)=>{
           {/* Since we are using map we need to use key to uniquely identify the news item */}
         return <div className="col-md-4" key={element.url}>
-          <NewsItem key={element.url} title={element.title.slice(0,45)+"..."} description={element.description.slice(0,90)+'...'} imageUrl={element.urlToImage} newsUrl={element.url}/>
+          <NewsItem key={element.url} title={element.title} description={element.description} imageUrl={element.urlToImage?element.urlToImage:"https://cdn.ndtv.com/common/images/ogndtv.png"} newsUrl={element.url}/>
           </div>
         })}
         </div>
