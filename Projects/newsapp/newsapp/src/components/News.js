@@ -3,6 +3,14 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 
 export class News extends Component {
+
+  constructor(){
+    super(); //mandatory 
+    //Do the work here
+    console.log("Contructor from News.js")
+    
+  }
+
   render() {
     return (
       <div>
