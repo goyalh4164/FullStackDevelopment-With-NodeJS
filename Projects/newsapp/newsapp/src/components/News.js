@@ -15,19 +15,44 @@ export class News extends Component {
    //It holds variable under observance
     this.state={
       articles :[],
-      loading :false
+      loading :false,
+      page:1
     }
   }
 
   async componentDidMount(){
     // it will run when the complete render method has run completely
-    let url="https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627"
+    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page}`
     let data =await fetch(url);
     let parsedData = await data.json()
     console.log(parsedData);
     this.setState({articles :parsedData.articles})
 
   }
+  handlePreviousClick =async ()=>{
+    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page-1}`
+    let data =await fetch(url);
+    let parsedData = await data.json()
+    console.log(parsedData);
+    this.setState({
+      articles :parsedData.articles,
+      page : this.state.page-1
+    })
+  }
+  handleNextClick =async ()=>{
+    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page+1}`
+    let data =await fetch(url);
+    let parsedData = await data.json()
+    console.log(parsedData);
+    this.setState({
+      articles :parsedData.articles,
+      page : this.state.page+1
+    })
+
+
+  }
+
+
 
   render() {
     return (
@@ -37,11 +62,15 @@ export class News extends Component {
         <div className="row">
         {this.state.articles.map((element)=>{
           {/* Since we are using map we need to use key to uniquely identify the news item */}
-        return <div className="col-md-4" key={element.url}>
+          return <div className="col-md-4" key={element.url}>
           <NewsItem key={element.url} title={element.title} description={element.description} imageUrl={element.urlToImage?element.urlToImage:"https://cdn.ndtv.com/common/images/ogndtv.png"} newsUrl={element.url}/>
           </div>
         })}
         </div>
+        </div>
+        <div className="container d-flex justify-content-between">
+          <button disabled={this.state.page<=1} type='button' className='btn btn-dark' onClick={this.handlePreviousClick}>&larr; Previous</button>
+          <button type='button' className='btn btn-dark' onClick={this.handleNextClick}>Next &rarr;</button>
         </div>
       </div>
     )
