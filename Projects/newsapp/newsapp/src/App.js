@@ -3,6 +3,8 @@ import './App.css';
 import React, { Component } from 'react'
 import Navbar from './components/Navbar';
 import News from './components/News';
+import Spinner from './components/Spinner';
+
 
 // ed7485fdf71d495b860eaa1835fe5627
 //rcc for class syntax
@@ -13,7 +15,7 @@ export default class App extends Component {
     return (
       <div>
         <Navbar/>
-        <News/>
+        <News pageSize={5}/>
       </div>
     )
   }
