@@ -7,7 +7,7 @@ export class NewsItem extends Component {
     return (
       <div className='my-3'>
         {/* Js accepts inline styling as an object */}
-        <div className="card" style={{width: "18rem"}} > 
+        <div className="card"  > 
             <img className="card-img-top" src={imageUrl} alt="Card image cap"/>
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
