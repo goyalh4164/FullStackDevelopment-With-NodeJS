@@ -79,7 +79,7 @@ export class News extends Component {
         <h1 className='text-center'>NewsMonkey - Top Headlines </h1>
         {this.state.loading && <Spinner/>}
         <div className="row">
-        {!this.state.loading && this.state.articles.map((element)=>{
+        {!this.state.loading && this.state.articles?.map((element)=>{
           {/* Since we are using map we need to use key to uniquely identify the news item */}
           return <div className="col-md-4" key={element.url}>
           <NewsItem key={element.url} title={element.title} description={element.description} imageUrl={element.urlToImage?element.urlToImage:"https://cdn.ndtv.com/common/images/ogndtv.png"} newsUrl={element.url} author={element.author} date={element.publishedAt}/>
