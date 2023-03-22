@@ -3,7 +3,7 @@ import './App.css';
 import React, { Component } from 'react'
 import Navbar from './components/Navbar';
 import News from './components/News';
-import Spinner from './components/Spinner';
+
 
 
 // ed7485fdf71d495b860eaa1835fe5627
@@ -15,7 +15,7 @@ export default class App extends Component {
     return (
       <div>
         <Navbar/>
-        <News pageSize={5}/>
+        <News pageSize={5} country={"in"} />
       </div>
     )
   }
