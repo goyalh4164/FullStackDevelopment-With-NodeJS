@@ -33,7 +33,7 @@ export class News extends Component {
 
   async componentDidMount(){
     // it will run when the complete render method has run completely
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page}&pageSize=${this.props.pageSize}`
+    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${this.state.page}&pageSize=${this.props.pageSize}`
     this.setState({loading : true});
     let data =await fetch(url);
     let parsedData = await data.json()
@@ -45,7 +45,7 @@ export class News extends Component {
 
   }
   handlePreviousClick =async ()=>{
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page-1}&pageSize=${this.props.pageSize}`
+    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${this.state.page-1}&pageSize=${this.props.pageSize}`
     this.setState({loading : true});
     let data =await fetch(url);
     let parsedData = await data.json()
@@ -57,7 +57,7 @@ export class News extends Component {
   }
   handleNextClick =async ()=>{
     
-      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ed7485fdf71d495b860eaa1835fe5627&page=${this.state.page+1}&pageSize=${this.props.pageSize}`
+      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${this.state.page+1}&pageSize=${this.props.pageSize}`
       this.setState({loading : true});
       let data =await fetch(url);
       let parsedData = await data.json()
