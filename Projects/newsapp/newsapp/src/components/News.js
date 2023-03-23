@@ -14,8 +14,8 @@ export class News extends Component {
     pageSize :PropTypes.number,
     category : PropTypes.string
   }
-  constructor(){
-    super(); //mandatory 
+  constructor(props){
+    super(props); //mandatory 
     //Do the work here
     console.log("Contructor from News.js")
     /* 
@@ -23,12 +23,14 @@ export class News extends Component {
     The state is an instance of React Component Class can be defined as an object of a set of observable properties that control the behavior of the component. In other words, the State of a component is an object that holds some information that may change over the lifetime of the component. For example, let us think of the clock that we created in this article, we were calling the render() method every second explicitly, but React provides a better way to achieve the same result and that is by using State, storing the value of time as a member of the component’s state. We will look into this more elaborately later in the article.
     */ 
    //It holds variable under observance
+   //You need to pass the props to use it in your program
     this.state={
       articles :[],
       loading :false,
       page:1,
       totalResults : 1
     }
+    document.title =`${this.props.category} News Monkey`;
   }
   async updateNews(){
     const url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${this.state.page}&pageSize=${this.props.pageSize}`
@@ -61,7 +63,7 @@ export class News extends Component {
     return (
       <div>
         <div className="container my-3">
-        <h1 className='text-center'>NewsMonkey - Top Headlines </h1>
+        <h1 className='text-center'>NewsMonkey - Top  {(this.props.category)} Headlines</h1>
         {this.state.loading && <Spinner/>}
         <div className="row">
         {!this.state.loading && this.state.articles?.map((element)=>{
