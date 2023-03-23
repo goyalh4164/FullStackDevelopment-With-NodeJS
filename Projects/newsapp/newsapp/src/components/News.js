@@ -30,10 +30,8 @@ export class News extends Component {
       totalResults : 1
     }
   }
-
-  async componentDidMount(){
-    // it will run when the complete render method has run completely
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${this.state.page}&pageSize=${this.props.pageSize}`
+  async updateNews(){
+    const url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${this.state.page}&pageSize=${this.props.pageSize}`
     this.setState({loading : true});
     let data =await fetch(url);
     let parsedData = await data.json()
@@ -41,32 +39,19 @@ export class News extends Component {
     this.setState({articles :parsedData.articles,
       loading : false
     })
-    this.state.totalResults = parsedData.totalResults;
+    this.setState({totalResults : parsedData.totalResults})    
+  }
+  async componentDidMount(){
+    await this.updateNews();
 
   }
-  handlePreviousClick =async ()=>{
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${this.state.page-1}&pageSize=${this.props.pageSize}`
-    this.setState({loading : true});
-    let data =await fetch(url);
-    let parsedData = await data.json()
-    this.setState({
-      articles :parsedData.articles,
-      page : this.state.page-1,
-      loading :false
-    })
+  handlePreviousClick =async ()=>{    
+    this.setState({page : this.state.page -1})
+    await this.updateNews();
   }
-  handleNextClick =async ()=>{
-    
-      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${this.state.page+1}&pageSize=${this.props.pageSize}`
-      this.setState({loading : true});
-      let data =await fetch(url);
-      let parsedData = await data.json()
-      console.log(parsedData);
-      this.setState({
-        articles :parsedData.articles,
-        page : this.state.page+1,
-        loading :false
-      })
+  handleNextClick =async ()=>{      
+      this.setState({page : this.state.page +1})
+      await this.updateNews();
     }
   
 
