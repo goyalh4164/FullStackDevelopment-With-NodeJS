@@ -10,8 +10,7 @@ const News =(props)=> {
   const [loading,setLoading] =useState(true);
   const [page,setPage] =useState(1);
   const [totalResults,setTotalResults] =useState(0);
-  // document.title =`${props.category} News Monkey`;
-
+  
   const updateNews=async ()=>{
     const url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${page}&pageSize=${props.pageSize}`
     setLoading(true);
@@ -26,6 +25,7 @@ const News =(props)=> {
 
   //we use useEffect instead of componentDidMount
   useEffect(()=>{
+    document.title =`${props.category} News Monkey`;
     updateNews();
   },[])
 
@@ -52,7 +52,7 @@ const News =(props)=> {
         >
           <div>
         <div className="container my-3">
-        <h1 className='text-center'>NewsMonkey - Top  {(props.category)} Headlines</h1>
+        <h1 className='text-center' style={{margin : '90px'}}>NewsMonkey - Top  {(props.category)} Headlines</h1>
         {loading && <Spinner/>}
         <div className="row">
         {articles.map((element)=>{
