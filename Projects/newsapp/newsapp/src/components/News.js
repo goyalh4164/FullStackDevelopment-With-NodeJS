@@ -19,7 +19,6 @@ const News =(props)=> {
     // console.log(parsedData);
     setArticles(parsedData.articles);
     setTotalResults(parsedData.totalResults);
-    setTotalResults(parsedData.totalResults);
     setLoading(false);
   }
 
@@ -34,8 +33,8 @@ const News =(props)=> {
   // }
   
   const fetchMoreData = async ()=>{
-    const url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${page}&pageSize=${props.pageSize}`
     setPage(page+1);
+    const url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=3c01c27651cb47189046852bd8bdf521&page=${page}&pageSize=${props.pageSize}`
     setLoading(true);
     let data =await fetch(url);
     let parsedData = await data.json()
@@ -53,7 +52,7 @@ const News =(props)=> {
           <div>
         <div className="container my-3">
         <h1 className='text-center' style={{margin : '90px'}}>NewsMonkey - Top  {(props.category)} Headlines</h1>
-        {loading && <Spinner/>}
+        {/* {loading && <Spinner/>} */}
         <div className="row">
         {articles.map((element)=>{
           {/* Since we are using map we need to use key to uniquely identify the news item */}
