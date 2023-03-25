@@ -3,6 +3,8 @@ const router=express.Router();
 const User = require('../models/User');
 const { body, validationResult } = require('express-validator'); //express validater
 const bcrypt = require('bcryptjs'); //using for encryption of the password
+const jwt = require('jsonwebtoken'); //Token Generator
+const JWT_SECRET ='HarshSignature' //with this we sign our web token
 //creating a User using :POST at "/api/auth/createuser". No login required
 
 
@@ -30,7 +32,14 @@ router.post('/createuser',[body('email','Enter a valid Email').isEmail(),body('n
         password : secPass
     })
     //when validation is also passed and data is also received
-    res.send('data received')
+    const current_user=await User.findOne({email : req.body.email}); //finding the id of the current user
+    const data ={
+        user:{
+            id : current_user.id
+        }
+    }
+    const authtoken = jwt.sign(data,JWT_SECRET); //signed the token
+    res.json(authtoken); //send the token to the user
     }
     catch(error){
         console.error(error);
