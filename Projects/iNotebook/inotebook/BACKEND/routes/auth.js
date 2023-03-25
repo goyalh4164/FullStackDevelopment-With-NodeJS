@@ -43,8 +43,47 @@ router.post('/createuser',[body('email','Enter a valid Email').isEmail(),body('n
     }
     catch(error){
         console.error(error);
-        res.status(500).send("Some error occured");
+        res.status(500).send("Internal Server Error");
     }
 })
+
+//Authenticate a User using POST "/api/auth/login" . No login required
+router.post('/login',[
+    body('email','Enter a valid Email').isEmail(),body('password','Password cannot be blank').exists()],async (req,res)=>{
+    const errors = validationResult(req);
+    //if any validation error occurs
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    // till here no validation error occurs
+    const {email,password} =req.body; //extracted email and password from the req.body
+    try{
+        let user =await User.findOne({email}); //finding the user from the database
+        //if user does not exist in the database
+        if(!user){
+            return res.status(400).json({error : "Please try to login with correct Credentials"})
+        }
+        //if the user exist then we are comparing the hashed password using bcrypt compare function
+        const passwordCompare=await bcrypt.compare(password,user.password);
+        //if the password didn't match then sending the bad request
+        if(!passwordCompare){
+            return res.status(400).json({error : "Please try to login with correct Credentials"})
+        }
+        //if everything goes good   
+        const data ={
+            user:{
+                id : user.id
+            }
+        }
+        const authtoken = jwt.sign(data,JWT_SECRET); //signed the token
+        res.json(authtoken); //send the token to the user
+    }
+    //if something unexpected occurs
+    catch(error){
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
 
 module.exports = router;
