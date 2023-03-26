@@ -5,6 +5,7 @@ const { body, validationResult } = require('express-validator'); //express valid
 const bcrypt = require('bcryptjs'); //using for encryption of the password
 const jwt = require('jsonwebtoken'); //Token Generator
 const JWT_SECRET ='HarshSignature' //with this we sign our web token
+const fetchuser = require('../middleware/fetchUser')
 //creating a User using :POST at "/api/auth/createuser". No login required
 
 
@@ -85,5 +86,17 @@ router.post('/login',[
     }
 })
 
+// Get Logged in user details using POST "/api/auth/getuser" .Login required
+router.post('/getuser',fetchuser,async (req,res)=>{
+        try {
+            userId =req.user.id;  //this user id is appended through the middleware
+            const user =await User.findById(userId).select("-password"); //select all the fields of the user with the given id except the password
+            res.send(user);
+
+        } 
+        catch(error){
+            console.error(error);
+            res.status(500).send("Internal Server Error");
+        }})
 
 module.exports = router;
