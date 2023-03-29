@@ -1,9 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom"; //from where you want to access route
+import React,{useEffect} from "react";
+import { Link, useLocation } from "react-router-dom"; //from where you want to access route
+
 
 const Navbar = () => {
+  let location =useLocation();
+  useEffect(()=>{
+    console.log(location.pathname); //this will give the current location of the requested root like for home "/" and about "/about"
+  },[location])
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
         Navbar
       </Link>
@@ -21,13 +27,13 @@ const Navbar = () => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <Link className="nav-link" to="/">
+          <li className="nav-item">
+            <Link className={`nav-link ${location.pathname==="/"? "active" :""}`} to="/">
               Home 
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/about">
+            <Link className={`nav-link ${location.pathname==="/about"? "active" :""}`} to="/about">
               About
             </Link>
           </li>
