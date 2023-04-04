@@ -1,10 +1,13 @@
-import React,{useContext} from 'react'
+import React,{useContext, useEffect} from 'react'
 import noteContext from '../context/notes/noteContext'
 import NoteItem from './NoteItem';
 import AddNote from './AddNote';
 const Notes = () => {
   const context = useContext(noteContext);
-  const {notes,addNote} =context; //through destructuring we bought notes and setnotes
+  const {notes,getNotes} =context; //through destructuring we bought notes and setnotes
+  useEffect(()=>{
+    getNotes() //importing all notes from the database
+  },[])
   return (
     <>
     <AddNote/>
