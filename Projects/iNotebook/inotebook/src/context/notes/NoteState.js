@@ -46,7 +46,17 @@ const NoteState = (props)=>{
         setNotes(notes.concat(note)) //it will update the upcoming note
       }
       //Delete a Note
-      const deleteNote = (id)=>{
+      const deleteNote = async(id)=>{
+        const response = await fetch(`${host}/api/notes/deletenote/${id}`,{
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token" :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQyMDQwZTU1MDQ5ZTViYjA3YjNiYTAxIn0sImlhdCI6MTY3OTgzNTM5Mn0.EuoirGQJ9QiW2DAXbhGOHHFj7QyOU7sN9BjWvq--TUc"
+          },
+        });
+        const json=response.json();
+        console.log(json)
+        //deleting a note at client side
         console.log("deleting the note with the given id: "+id)
         let newNotes=notes.filter((note)=>{return note._id!==id}) //it will add all the notes except that id
         setNotes(newNotes); //setting the note tot he new note
