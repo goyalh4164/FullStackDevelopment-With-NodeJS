@@ -25,10 +25,10 @@ const AddNote = () => {
     <label htmlFor="description">Description</label>
     <input type="text" name="description" className="form-control" id="description" placeholder="Enter Description" onChange={onchange}/>
   </div>
-  {/* <div className="form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-  </div> */}
+  <div className="form-group">
+    <label htmlFor="tag">Tag</label>
+    <input type="text" name="tag" className="form-control" id="tag" placeholder="Enter Tag" onChange={onchange}/>
+  </div>
   <button type="submit" className="btn btn-primary" onClick={handleClick}>Submit</button>
 </form>
 
