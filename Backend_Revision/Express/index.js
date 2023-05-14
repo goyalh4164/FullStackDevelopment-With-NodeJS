@@ -1,5 +1,8 @@
 import express from "express";
 
+// path module
+import path from 'path'
+
 //created the server/app 
 const app = express();
 
@@ -21,6 +24,13 @@ app.get("/data",(req,res)=>{
         succes : true,
         products : []
     })
+})
+
+// sendFile
+app.get("/dummy",(req,res)=>{
+    // path.resolve() is same as __dirname
+    const pathlocation = path.resolve();
+    res.sendFile(path.join(pathlocation,"/dummy.txt"))
 })
 
 
