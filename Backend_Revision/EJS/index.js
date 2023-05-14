@@ -3,6 +3,7 @@ import path from "path"
 
 const app = express();
 
+var users = [];
 //you need to mention the static folder path explicitely
 // app.use(express.static(path.join(path.resolve(), 'public')));
 // not working will look into it
@@ -19,12 +20,13 @@ app.get("/",(req,res)=>{
 })
 
 //Handling post requests
-app.post("/",(req,res)=>{
+app.post("/contact",(req,res)=>{
     console.log(req.body)
     // req.body contains all the details inside the body of the posted form
+    users.push(req.body)
     console.log(req.body.name)
     console.log(req.body.email)
-    res.redirect("/")
+    res.redirect("/success")
 })
 
 //when you want to pass the data from backend to the EJS page
@@ -32,6 +34,13 @@ app.get("/name",(req,res)=>{
     res.render("data",{name : "Harsh"})
 })
 
+app.get("/success",(req,res)=>{
+    res.render("success")
+})
+
+app.get("/users",(req,res)=>{
+    res.json(users)
+})
 // Sending the static file
 app.get("/file",(req,res)=>{
     // using it alternative to express.static
