@@ -36,18 +36,21 @@ app.use(cookieParser())
 // while using the EJS set the view-engine to the EJS
 app.set("view engine","ejs")
 
-//simple ejs page rendering
-app.get("/",(req,res)=>{
-    console.log(req.cookies)
-    // accessing only the token
-    console.log(req.cookies.token)
+// creating a middleware to check authentication of the user
+const isAuthenticated = (req,res,next)=>{
     const {token} = req.cookies;
     if(token){
-        res.render("logout")
+        next()
     }
     else{
         res.render("login")
     }
+}
+
+
+//simple ejs page rendering
+app.get("/",isAuthenticated,(req,res)=>{
+    res.render("logout")
 })
 
 //Handling post requests
@@ -105,7 +108,7 @@ app.get("/logout",(req,res)=>{
         httpOnly:true,
         expires:new Date(Date.now())
     });
-    res.redirect('/login')
+    res.redirect('/')
 })
 
 app.listen(3000,()=>{
