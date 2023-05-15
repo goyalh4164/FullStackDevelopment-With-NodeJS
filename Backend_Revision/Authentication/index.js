@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import jwt from "jsonwebtoken";
 
 const app=express();
 
@@ -27,23 +28,40 @@ const userSchema =new mongoose.Schema({
 const User = mongoose.model("User",userSchema);
 
 // GET request login page
-app.get("/",(req,res)=>{
+app.get("/",async (req,res)=>{
     const {token} = req.cookies;
     if(token){
-        res.render("logout")
+        // if token exist then checking is it a valid token
+        const decoded = jwt.verify(token,"secretkey")
+        console.log(decoded)
+        // finding if the token contains the valid user from the database
+        req.user = await User.findById(decoded._id);
+        if(req.user){
+
+            console.log(req.user)
+            res.render("logout",{ email: req.user.email })
+        }
+        else{
+
+            res.render("login")
+        }
     }
     else{
         res.render("login")
     }
 })
 
-// POST request login page
-app.post("/login",async (req,res)=>{
+// POST request / page
+app.post("/",async (req,res)=>{
     console.log(req.body)
     // storing the data into the model
-    await User.create(req.body)
-    res.cookie("token","loggedin");
-    res.render("logout")
+    const user = await User.create(req.body)
+    // creating token for more secured entry
+    const token = jwt.sign({_id : user._id},"secretkey");
+    console.log(token)
+    // setting the cookie token equal to the jwt token
+    res.cookie("token",token);
+    res.render("logout",{ email: req.body.email })
 })
 
 // Clearing cookie on logout request
