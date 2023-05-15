@@ -8,6 +8,24 @@ app.set("view engine","ejs")
 app.use(express.urlencoded({extended : true}))
 app.use(cookieParser())
 
+// connected to the mongoose
+mongoose.connect("mongodb://127.0.0.1:27017/users")
+.then(()=>{
+    console.log("Database connected")
+})
+.catch((e)=>{
+    console.error(e)
+})
+
+// User schema
+const userSchema =new mongoose.Schema({
+    email:String,
+    password:String
+})
+
+// user model
+const User = mongoose.model("User",userSchema);
+
 // GET request login page
 app.get("/",(req,res)=>{
     const {token} = req.cookies;
@@ -20,7 +38,10 @@ app.get("/",(req,res)=>{
 })
 
 // POST request login page
-app.post("/login",(req,res)=>{
+app.post("/login",async (req,res)=>{
+    console.log(req.body)
+    // storing the data into the model
+    await User.create(req.body)
     res.cookie("token","loggedin");
     res.render("logout")
 })
