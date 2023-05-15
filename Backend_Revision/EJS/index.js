@@ -1,9 +1,28 @@
 import express from "express";
 import path from "path"
+import mongoose from "mongoose";
+
+// connecting to the local mongoDB database
+mongoose.connect("mongodb://127.0.0.1:27017/message")
+.then(()=>{
+    console.log("Database connected")
+})
+.catch((e)=>{
+    console.error(e)
+})
+
+// Message schema
+const messageSchema = new mongoose.Schema({
+    name:String,
+    email:String
+});
+
+// Modeling the schema
+const Message = mongoose.model("Message",messageSchema)
 
 const app = express();
 
-var users = [];
+
 //you need to mention the static folder path explicitely
 // app.use(express.static(path.join(path.resolve(), 'public')));
 // not working will look into it
@@ -20,12 +39,11 @@ app.get("/",(req,res)=>{
 })
 
 //Handling post requests
-app.post("/contact",(req,res)=>{
-    console.log(req.body)
-    // req.body contains all the details inside the body of the posted form
-    users.push(req.body)
-    console.log(req.body.name)
-    console.log(req.body.email)
+app.post("/contact",async (req,res)=>{
+    const messageData = {name : req.body.name , email : req.body.email};
+    console.log(messageData)
+    // added the data to the database
+    await Message.create(messageData);
     res.redirect("/success")
 })
 
@@ -46,6 +64,11 @@ app.get("/file",(req,res)=>{
     // using it alternative to express.static
     const filePath = path.join(path.resolve(), "public", "index.html");
     res.sendFile(filePath);
+})
+
+app.get("/add",async (req,res)=>{
+    await Message.create({name : "Harsh" , email: "sample@gmail.com"});
+    res.send("Message sent")
 })
 
 
