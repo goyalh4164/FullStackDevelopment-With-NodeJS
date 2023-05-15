@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path"
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 
 // connecting to the local mongoDB database
 mongoose.connect("mongodb://127.0.0.1:27017/message")
@@ -29,13 +30,24 @@ const app = express();
 
 // when you want to receive the encoded data from the post requests like incase of form
 app.use(express.urlencoded({extended : true}))
+// using cookie-parser
+app.use(cookieParser())
 
 // while using the EJS set the view-engine to the EJS
 app.set("view engine","ejs")
 
 //simple ejs page rendering
 app.get("/",(req,res)=>{
-    res.render("index");
+    console.log(req.cookies)
+    // accessing only the token
+    console.log(req.cookies.token)
+    const {token} = req.cookies;
+    if(token){
+        res.render("logout")
+    }
+    else{
+        res.render("login")
+    }
 })
 
 //Handling post requests
@@ -71,7 +83,30 @@ app.get("/add",async (req,res)=>{
     res.send("Message sent")
 })
 
+// Login
+app.get("/login",(req,res)=>{
+    res.render("login")
+})
 
+// handling login post requests
+app.post("/login",(req,res)=>{
+    // setting the cookie
+    res.cookie("token","iamin",
+    {
+        httpOnly:true,
+        expires:new Date(Date.now()+60*1000)
+    });
+
+    res.redirect("/")
+})
+
+app.get("/logout",(req,res)=>{
+    res.cookie("token",null,{
+        httpOnly:true,
+        expires:new Date(Date.now())
+    });
+    res.redirect('/login')
+})
 
 app.listen(3000,()=>{
     console.log("Server running")
