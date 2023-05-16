@@ -4,6 +4,8 @@ import mongoose, { mongo } from "mongoose";
 const app = express();
 
 // Using middleware to accept data is JSON format
+// Params are basically used to work with user query
+
 app.use(express.json());
 
 //connected with the mongoose
@@ -31,6 +33,9 @@ app.get("/",(req,res)=>{
 
 // This will give all the users in the database
 app.get("/users/all",async (req,res)=>{
+    // displaying all the query
+    //Example : http://localhost:3000/users/all?name=harsh&city=Delhi 
+    console.log(req.query) // It returns the object
     // feteching all the users from the DATABASE
     const users = await User.find({});
     res.json({
