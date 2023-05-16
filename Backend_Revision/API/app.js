@@ -60,6 +60,17 @@ app.post("/users/new", async (req,res)=>{
     })
 })
 
+// passing user id through params
+// This is also known as dynamic URL
+app.get("/userid/:id",async (req,res)=>{
+    const {id} = req.params;
+    const user = await User.findById(id);
+    res.json({
+        success : true ,
+        user :user
+    })
+})
+
 app.listen(3000, ()=>{
     console.log("Server is running")
 });
