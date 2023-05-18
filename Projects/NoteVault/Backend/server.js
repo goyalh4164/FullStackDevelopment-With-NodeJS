@@ -208,11 +208,11 @@ app.get('/user/logout', (req, res) => {
 // ----------------------------------Notebook APIS -----------------------------------------
 
 // GET - Show all notes from the DB
-app.get('/notes', isAuthenticated, (req, res) => {
-  const userId = req.userId; // Assuming the authenticated user ID is available in req.userId
-
+app.get('/note/show', isAuthenticated, (req, res) => {
+  const userId = req.userID; // Assuming the authenticated user ID is available in req.user._id
+  console.log(userId)
   // Find all notes with the user ID
-  Note.find({ user: userId })
+  Notebook.find({ user: userId })
     .then((notes) => {
       res.json(notes);
     })
@@ -222,8 +222,32 @@ app.get('/notes', isAuthenticated, (req, res) => {
     });
 });
 
+// GET - ADD the node
+app.get("/note/add",(req,res)=>{
+  res.send("Enter the tag and description in the modal")
+})
 
-// ----------------------------------Notebook APIS -----------------------------------------
+// POST - Add the note in the DB of the current user
+app.post('/note/add', isAuthenticated, (req, res) => {
+  const { tag, description } = req.body;
+  const userId = req.userID; // Assuming you have set the user object in req.user during authentication
+  // Create a new notebook document
+  const notebook = new Notebook({
+    tag,
+    description,
+    user: userId
+  });
+  // Save the notebook to the database
+  notebook.save()
+  .then(() => {
+    res.status(201).json({ message: 'Note added successfully' });
+  })
+  .catch((error) => {
+    console.error('Error adding note:', error);
+    res.status(500).json({ message: 'An error occurred while adding the note' });
+  });
+});
+
 
 // ----------------------------------Notebook APIS -----------------------------------------
 
