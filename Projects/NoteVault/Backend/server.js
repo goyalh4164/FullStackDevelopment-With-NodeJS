@@ -290,6 +290,25 @@ app.put('/note/update/:noteId', isAuthenticated, (req, res) => {
     });
 });
 
+// Search Functionality by the tag name
+// searching the the URL using query params
+// localhost:3000/note/search?tag=searching
+// it returns only the result of array if the tag name is exactly matched with the query
+app.get('/note/search', isAuthenticated, (req, res) => {
+  const userId = req.userID;
+  const { tag } = req.query;
+
+  // Find notes with the specified tag and user ID
+  Notebook.find({ tag, user: userId })
+    .then((notes) => {
+      res.json(notes);
+    })
+    .catch((error) => {
+      console.error('Error searching notes:', error);
+      res.status(500).json({ message: 'An error occurred while searching notes' });
+    });
+});
+
 
 // ----------------------------------Notebook APIS -----------------------------------------
 
