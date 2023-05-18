@@ -92,7 +92,37 @@ const isAuthenticated = (req,res,next) =>{
   } else {
     // Cookie does not exist
     console.log('Cookie not found')
-    res.redirect("/")
+    res.status(401).redirect("/")
+  }
+}
+
+const isAuthenticatedlogin = (req,res,next) =>{
+  const token = req.cookies.token;
+  if (token) {
+    // Verify and decode the token
+    console.log(token)
+    const decoded = jwt.verify(token, 'your_secret_key');
+    // Access the decrypted data from the token
+    const { userId } = decoded;
+    // Verifying the user ID with the database
+    User.findOne({_id : userId}).then((isFound)=>{
+      if(isFound){
+        console.log("User is Authorzied");
+        // setting the userID so that any authrized connection can use it
+        req.userID = userId;
+        res.status(200).redirect("/note/show")
+      }
+      else{
+        res.send("Internal server error")
+      }
+    }).catch((error) => {
+      console.error('Server down', error);
+      res.status(500).json({ message: 'An error occurred while token verification' });
+    });
+  } else {
+    // Cookie does not exist
+    console.log('Cookie not found')
+    next()
   }
 }
 
@@ -155,8 +185,7 @@ app.post('/user/register', (req, res) => {
   });
 
 // GET -> Login Page
-app.get('/user/login',isAuthenticated,(req,res)=>{
-  console.log(req.userID);
+app.get('/user/login',isAuthenticatedlogin,(req,res)=>{
   res.send("Welcome to the login page")
 })
 // POST ->Login Page
@@ -183,7 +212,7 @@ app.post('/user/login', (req, res) => {
           // Set the token as a cookie
           res.cookie('token', token, { httpOnly: true });
 
-          res.json({ message: 'Login successful' });
+          res.status(200).redirect("/note/show");
         })
         .catch((error) => {
           console.error('Error comparing passwords:', error);
@@ -214,7 +243,7 @@ app.get('/note/show', isAuthenticated, (req, res) => {
   // Find all notes with the user ID
   Notebook.find({ user: userId })
     .then((notes) => {
-      res.json(notes);
+      res.status(200).json(notes);
     })
     .catch((error) => {
       console.error('Error fetching notes:', error);
@@ -260,7 +289,7 @@ app.delete('/note/delete/:noteId', isAuthenticated, (req, res) => {
         // Note not found or not authorized to delete
         return res.status(404).json({ message: 'Note not found or unauthorized' });
       }
-      res.json({ message: 'Note deleted successfully' });
+      res.status(200).json({ message: 'Note deleted successfully' });
     })
     .catch((error) => {
       console.error('Error deleting note:', error);
@@ -282,7 +311,7 @@ app.put('/note/update/:noteId', isAuthenticated, (req, res) => {
         return res.status(404).json({ message: 'Note not found or unauthorized' });
       }
 
-      res.json({ message: 'Note updated successfully', note: updatedNote });
+      res.status(200).json({ message: 'Note updated successfully', note: updatedNote });
     })
     .catch((error) => {
       console.error('Error updating note:', error);
@@ -301,7 +330,7 @@ app.get('/note/search', isAuthenticated, (req, res) => {
   // Find notes with the specified tag and user ID
   Notebook.find({ tag, user: userId })
     .then((notes) => {
-      res.json(notes);
+      res.status(200).json(notes);
     })
     .catch((error) => {
       console.error('Error searching notes:', error);
