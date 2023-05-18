@@ -14,6 +14,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/NoteVault')
   
 const app = express();
 const port = 3000; // Change this to the desired port number
+
 // Middleware to read the body data in json format
 app.use(express.json());
 // Middleware to parse cookies
@@ -40,6 +41,38 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 // --------------------------------USER SCHEMA AND MODEL ----------------------------------
+
+// ---------------------------------------MIDDLEWARES--------------------------------------
+
+const isAuthenticated = (req,res,next) =>{
+  const token = req.cookies.token;
+  if (token) {
+    // Verify and decode the token
+    console.log(token)
+    const decoded = jwt.verify(token, 'your_secret_key');
+    // Access the decrypted data from the token
+    const { userId } = decoded;
+    // Verifying the user ID with the database
+    User.findOne({_id : userId}).then((isFound)=>{
+      if(isFound){
+        res.send("User is Authorzied and logged in");
+      }
+      else{
+        res.send("Unauthrized User")
+      }
+    }).catch((error) => {
+      console.error('Server down', error);
+      res.status(500).json({ message: 'An error occurred while token verification' });
+    });
+  } else {
+    // Cookie does not exist
+    console.log('Cookie not found')
+    next();
+  }
+}
+
+// ---------------------------------------MIDDLEWARES--------------------------------------
+
 
 // -----------------------------------USER APIS--------------------------------------------
 
@@ -102,53 +135,52 @@ app.get('/user/login',(req,res)=>{
 })
 // POST ->Login Page
 app.post('/user/login', (req, res) => {
-    const { email, password } = req.body;
-    // Find the user by email
-    User.findOne({ email })
-      .then((user) => {
-        // Check if user exists
-        if (!user) {
-          return res.status(404).json({ message: 'User not found' });
-        }
-        // Compare the provided password with the stored hashed password
-        bcrypt.compare(password, user.password)
-          .then((isMatch) => {
-            if (isMatch) {
-              // Passwords match, user is authenticated
-              res.status(200).json({ message: 'Login successful' });
-            } else {
-              // Passwords do not match
-              res.status(401).json({ message: 'Invalid password' });
-            }
-          })
-          .catch((error) => {
-            console.error('Error comparing passwords:', error);
-            res.status(500).json({ message: 'An error occurred while comparing passwords' });
-          });
-      })
-      .catch((error) => {
-        console.error('Error finding user:', error);
-        res.status(500).json({ message: 'An error occurred while finding user' });
-      });
-  });
-  
+  const { email, password } = req.body;
+
+  // Find the user by email
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Compare the provided password with the hashed password in the database
+      bcrypt.compare(password, user.password)
+        .then((isMatch) => {
+          if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid password' });
+          }
+
+          // Generate JWT token
+          const token = jwt.sign({ userId: user._id }, 'your_secret_key');
+
+          // Set the token as a cookie
+          res.cookie('token', token, { httpOnly: true });
+
+          res.json({ message: 'Login successful' });
+        })
+        .catch((error) => {
+          console.error('Error comparing passwords:', error);
+          res.status(500).json({ message: 'An error occurred while comparing passwords' });
+        });
+    })
+    .catch((error) => {
+      console.error('Error finding user:', error);
+      res.status(500).json({ message: 'An error occurred while finding user' });
+    });
+});  
 
 // Logout API endpoint
 app.get('/user/logout', (req, res) => {
-  // Clear the "token" cookie by setting it to an empty value and setting the expiration to a past date
-  res.cookie('token', '', { expires: new Date(0) });
+  // Clear the "token" cookie by providing the cookie name
+  res.clearCookie('token');
   res.json({ message: 'Logout successful' });
 });
 
 // -----------------------------------USER APIS--------------------------------------------
 
-
-
-
-
-
-// Define a route
-app.get('/', (req, res) => {
+// GET - ROOT API
+app.get('/', isAuthenticated ,(req, res) => {
   res.send('Welcome to the NoteVault'); 
 });
 
