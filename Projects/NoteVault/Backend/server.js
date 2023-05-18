@@ -248,6 +248,48 @@ app.post('/note/add', isAuthenticated, (req, res) => {
   });
 });
 
+// DELETE - Delete a note
+app.delete('/note/delete/:noteId', isAuthenticated, (req, res) => {
+  const userId = req.userID; // Assuming the authenticated user ID is available in req.userID
+  const noteId = req.params.noteId; // Get the note ID from the request parameters
+
+  // Find the note by ID and user ID
+  Notebook.findOneAndDelete({ _id: noteId, user: userId })
+    .then((deletedNote) => {
+      if (!deletedNote) {
+        // Note not found or not authorized to delete
+        return res.status(404).json({ message: 'Note not found or unauthorized' });
+      }
+      res.json({ message: 'Note deleted successfully' });
+    })
+    .catch((error) => {
+      console.error('Error deleting note:', error);
+      res.status(500).json({ message: 'An error occurred while deleting the note' });
+    });
+});
+
+// PUT - Update a note
+app.put('/note/update/:noteId', isAuthenticated, (req, res) => {
+  const userId = req.userID; // Assuming the authenticated user ID is available in req.userID
+  const noteId = req.params.noteId; // Get the note ID from the request parameters
+  const { tag, description } = req.body; // Get the updated tag and description from the request body
+
+  // Find the note by ID and user ID
+  Notebook.findOneAndUpdate({ _id: noteId, user: userId }, { tag, description }, { new: true })
+    .then((updatedNote) => {
+      if (!updatedNote) {
+        // Note not found or not authorized to update
+        return res.status(404).json({ message: 'Note not found or unauthorized' });
+      }
+
+      res.json({ message: 'Note updated successfully', note: updatedNote });
+    })
+    .catch((error) => {
+      console.error('Error updating note:', error);
+      res.status(500).json({ message: 'An error occurred while updating the note' });
+    });
+});
+
 
 // ----------------------------------Notebook APIS -----------------------------------------
 
