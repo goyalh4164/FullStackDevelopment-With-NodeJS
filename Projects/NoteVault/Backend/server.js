@@ -42,6 +42,28 @@ const User = mongoose.model('User', userSchema);
 
 // --------------------------------USER SCHEMA AND MODEL ----------------------------------
 
+// --------------------------------NOTEBOOK SCHEMA AND MODEL-------------------------------
+
+const notebookSchema = new mongoose.Schema({
+  tag: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
+});
+
+const Notebook = mongoose.model('Notebook', notebookSchema);
+
+// --------------------------------NOTEBOOK SCHEMA AND MODEL-------------------------------
+
 // ---------------------------------------MIDDLEWARES--------------------------------------
 
 const isAuthenticated = (req,res,next) =>{
@@ -55,10 +77,13 @@ const isAuthenticated = (req,res,next) =>{
     // Verifying the user ID with the database
     User.findOne({_id : userId}).then((isFound)=>{
       if(isFound){
-        res.send("User is Authorzied and logged in");
+        console.log("User is Authorzied");
+        // setting the userID so that any authrized connection can use it
+        req.userID = userId;
+        next();
       }
       else{
-        res.send("Unauthrized User")
+        res.send("Internal server error")
       }
     }).catch((error) => {
       console.error('Server down', error);
@@ -67,7 +92,7 @@ const isAuthenticated = (req,res,next) =>{
   } else {
     // Cookie does not exist
     console.log('Cookie not found')
-    next();
+    res.redirect("/")
   }
 }
 
@@ -91,7 +116,7 @@ app.post('/user/register', (req, res) => {
         if (existingUser) {
           return res.status(400).json({ message: 'Email already registered' });
         }
-  
+
         // Hash the password
         bcrypt.hash(password, 10)
           .then((hashedPassword) => {
@@ -130,8 +155,9 @@ app.post('/user/register', (req, res) => {
   });
 
 // GET -> Login Page
-app.get('/user/login',(req,res)=>{
-    res.send("Welcome to the login page")
+app.get('/user/login',isAuthenticated,(req,res)=>{
+  console.log(req.userID);
+  res.send("Welcome to the login page")
 })
 // POST ->Login Page
 app.post('/user/login', (req, res) => {
@@ -179,8 +205,30 @@ app.get('/user/logout', (req, res) => {
 
 // -----------------------------------USER APIS--------------------------------------------
 
+// ----------------------------------Notebook APIS -----------------------------------------
+
+// GET - Show all notes from the DB
+app.get('/notes', isAuthenticated, (req, res) => {
+  const userId = req.userId; // Assuming the authenticated user ID is available in req.userId
+
+  // Find all notes with the user ID
+  Note.find({ user: userId })
+    .then((notes) => {
+      res.json(notes);
+    })
+    .catch((error) => {
+      console.error('Error fetching notes:', error);
+      res.status(500).json({ message: 'An error occurred while fetching the notes' });
+    });
+});
+
+
+// ----------------------------------Notebook APIS -----------------------------------------
+
+// ----------------------------------Notebook APIS -----------------------------------------
+
 // GET - ROOT API
-app.get('/', isAuthenticated ,(req, res) => {
+app.get('/', (req, res) => {
   res.send('Welcome to the NoteVault'); 
 });
 
