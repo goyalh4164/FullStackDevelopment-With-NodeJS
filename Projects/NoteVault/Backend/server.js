@@ -344,7 +344,8 @@ app.get('/note/search', isAuthenticated, (req, res) => {
   // Find notes with the specified tag and user ID
   Notebook.find({ tag, user: userId })
     .then((notes) => {
-      res.status(200).json(notes);
+      // res.status(200).json(notes);
+      res.render('search', { tag, notes });
     })
     .catch((error) => {
       console.error('Error searching notes:', error);
