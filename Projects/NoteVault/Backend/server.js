@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import ejs from 'ejs';
+import bodyParser from 'body-parser'
 
 mongoose.connect('mongodb://127.0.0.1:27017/NoteVault')
     .then(() => {
@@ -22,6 +23,8 @@ app.use(express.json());
 app.use(cookieParser());
 // Using EJS as viewEngine
 app.set('view engine', 'ejs');
+// Parse URL-encoded bodies
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // -------------------------------------USER-----------------------------------------------
 // --------------------------------USER SCHEMA AND MODEL ----------------------------------
@@ -142,6 +145,7 @@ app.get("/user/register",(req,res)=>{
 
 // POST -Registering User in the database
 app.post('/user/register', (req, res) => {
+  console.log(req.body)
     const { name, email, password } = req.body;
   
     // Check if user with the same email already exists

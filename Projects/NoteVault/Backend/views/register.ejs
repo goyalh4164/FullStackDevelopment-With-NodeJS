@@ -1,3 +1,9 @@
 <%- include("partials/header") -%>
 <h1>Registration Page</h1>
+<form method="post" action="/user/register">
+    <input type="text" placeholder="Name" required name="name"><br>
+    <input type="email" placeholder="Email" required name="email"><br>
+    <input type="password" placeholder="Password" required name="password"><br>
+    <button type="submit" onclick="">Submit</button>
+</form>
 <%- include("partials/footer") -%>
