@@ -356,7 +356,8 @@ app.get('/note/search', isAuthenticated, (req, res) => {
 
 // GET - ROOT API
 app.get('/', (req, res) => {
-  res.send('Welcome to the NoteVault'); 
+  // res.send('Welcome to the NoteVault'); 
+  res.render("home")
 });
 
 // Start the server
