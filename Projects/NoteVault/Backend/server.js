@@ -83,11 +83,13 @@ const isAuthenticated = (req,res,next) =>{
     // Access the decrypted data from the token
     const { userId } = decoded;
     // Verifying the user ID with the database
-    User.findOne({_id : userId}).then((isFound)=>{
-      if(isFound){
+    User.findOne({_id : userId}).then((curr_user)=>{
+      if(curr_user){
         console.log("User is Authorzied");
         // setting the userID so that any authrized connection can use it
         req.userID = userId;
+        req.userNAME = curr_user.name;
+        console.log(req.userNAME)
         next();
       }
       else{
@@ -113,11 +115,13 @@ const isAuthenticatedlogin = (req,res,next) =>{
     // Access the decrypted data from the token
     const { userId } = decoded;
     // Verifying the user ID with the database
-    User.findOne({_id : userId}).then((isFound)=>{
-      if(isFound){
+    User.findOne({_id : userId}).then((curr_user)=>{
+      if(curr_user){
         console.log("User is Authorzied");
         // setting the userID so that any authrized connection can use it
         req.userID = userId;
+        req.userNAME = curr_user.name;
+        console.log(req.userNAME)
         res.status(200).redirect("/note/show")
       }
       else{
@@ -256,7 +260,7 @@ app.get('/note/show', isAuthenticated, (req, res) => {
     .then((notes) => {
       // res.status(200).json(notes);
       console.log(notes)
-      res.render("note",{notes : notes})
+      res.render("note",{notes : notes , userNAME : req.userNAME})
     })
     .catch((error) => {
       console.error('Error fetching notes:', error);
@@ -357,7 +361,7 @@ app.get('/note/search', isAuthenticated, (req, res) => {
 // ----------------------------------Notebook APIS -----------------------------------------
 
 // GET - ROOT API
-app.get('/', (req, res) => {
+app.get('/', isAuthenticatedlogin,(req, res) => {
   // res.send('Welcome to the NoteVault'); 
   res.render("home")
 });
