@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
+import ejs from 'ejs';
 
 mongoose.connect('mongodb://127.0.0.1:27017/NoteVault')
     .then(() => {
@@ -19,6 +20,8 @@ const port = 3000; // Change this to the desired port number
 app.use(express.json());
 // Middleware to parse cookies
 app.use(cookieParser());
+// Using EJS as viewEngine
+app.set('view engine', 'ejs');
 
 // -------------------------------------USER-----------------------------------------------
 // --------------------------------USER SCHEMA AND MODEL ----------------------------------
