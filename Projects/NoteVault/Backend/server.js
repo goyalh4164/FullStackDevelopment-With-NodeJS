@@ -194,7 +194,8 @@ app.post('/user/register', (req, res) => {
 
 // GET -> Login Page
 app.get('/user/login',isAuthenticatedlogin,(req,res)=>{
-  res.send("Welcome to the login page")
+  // res.send("Welcome to the login page")
+  res.render("login")
 })
 // POST ->Login Page
 app.post('/user/login', (req, res) => {
