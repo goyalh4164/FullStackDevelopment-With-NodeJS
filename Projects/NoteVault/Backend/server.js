@@ -136,7 +136,8 @@ const isAuthenticatedlogin = (req,res,next) =>{
 
 // GET  Register Page 
 app.get("/user/register",(req,res)=>{
-    res.send("Welcome to the registration page");
+    // res.send("Welcome to the registration page");
+    res.render("register")
 })
 
 // POST -Registering User in the database
