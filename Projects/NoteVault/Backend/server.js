@@ -25,6 +25,8 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 // Parse URL-encoded bodies
 app.use(bodyParser.urlencoded({ extended: false }));
+// Serve static files from the 'public' folder
+app.use(express.static('public'));
 
 // -------------------------------------USER-----------------------------------------------
 // --------------------------------USER SCHEMA AND MODEL ----------------------------------
@@ -252,7 +254,9 @@ app.get('/note/show', isAuthenticated, (req, res) => {
   // Find all notes with the user ID
   Notebook.find({ user: userId })
     .then((notes) => {
-      res.status(200).json(notes);
+      // res.status(200).json(notes);
+      console.log(notes)
+      res.render("note",{notes : notes})
     })
     .catch((error) => {
       console.error('Error fetching notes:', error);
@@ -287,7 +291,7 @@ app.post('/note/add', isAuthenticated, (req, res) => {
 });
 
 // DELETE - Delete a note
-app.delete('/note/delete/:noteId', isAuthenticated, (req, res) => {
+app.post('/note/delete/:noteId', isAuthenticated, (req, res) => {
   const userId = req.userID; // Assuming the authenticated user ID is available in req.userID
   const noteId = req.params.noteId; // Get the note ID from the request parameters
 
@@ -307,7 +311,7 @@ app.delete('/note/delete/:noteId', isAuthenticated, (req, res) => {
 });
 
 // PUT - Update a note
-app.put('/note/update/:noteId', isAuthenticated, (req, res) => {
+app.post('/note/update/:noteId', isAuthenticated, (req, res) => {
   const userId = req.userID; // Assuming the authenticated user ID is available in req.userID
   const noteId = req.params.noteId; // Get the note ID from the request parameters
   const { tag, description } = req.body; // Get the updated tag and description from the request body
