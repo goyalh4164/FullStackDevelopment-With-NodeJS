@@ -266,7 +266,8 @@ app.get('/note/show', isAuthenticated, (req, res) => {
 
 // GET - ADD the node
 app.get("/note/add",(req,res)=>{
-  res.send("Enter the tag and description in the modal")
+  // res.send("Enter the tag and description in the modal")
+  res.render("addNote")
 })
 
 // POST - Add the note in the DB of the current user
