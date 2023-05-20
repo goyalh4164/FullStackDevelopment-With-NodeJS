@@ -146,7 +146,7 @@ const isAuthenticatedlogin = (req,res,next) =>{
 // GET  Register Page 
 app.get("/user/register",(req,res)=>{
     // res.send("Welcome to the registration page");
-    res.render("register")
+    res.render('register', { errorMessage: false });
 })
 
 // POST -Registering User in the database
@@ -158,7 +158,8 @@ app.post('/user/register', (req, res) => {
     User.findOne({ email })
       .then((existingUser) => {
         if (existingUser) {
-          return res.status(400).json({ message: 'Email already registered' });
+          // return res.status(400).json({ message: 'Email already registered' });
+          return res.render('register', { errorMessage: 'Email already registered.Login Directly'});
         }
 
         // Hash the password
@@ -179,29 +180,32 @@ app.post('/user/register', (req, res) => {
   
                 // Set the token as a cookie
                 res.cookie('token', token, { httpOnly: true });
-  
-                res.status(201).json({ message: 'User registered successfully' });
+                // res.status(201).json({ message: 'User registered successfully' });
+                res.render("success")
               })
               .catch((error) => {
                 console.error('Error registering user:', error);
-                res.status(500).json({ message: 'An error occurred while registering user' });
+                // res.status(500).json({ message: 'An error occurred while registering user' });
+                res.render('register', { errorMessage: 'An error occurred while registering user' });
               });
           })
           .catch((error) => {
             console.error('Error hashing password:', error);
-            res.status(500).json({ message: 'An error occurred while hashing password' });
+            // res.status(500).json({ message: 'An error occurred while hashing password' });
+            res.render('register', { errorMessage: 'An error occurred while hashing password' });
           });
       })
       .catch((error) => {
         console.error('Error checking existing user:', error);
-        res.status(500).json({ message: 'An error occurred while registering user' });
+        // res.status(500).json({ message: 'An error occurred while registering user' });
+        res.render('register', { errorMessage: 'An error occurred while checking existing user' });
       });
   });
 
 // GET -> Login Page
 app.get('/user/login',isAuthenticatedlogin,(req,res)=>{
   // res.send("Welcome to the login page")
-  res.render("login")
+  res.render('login', { errorMessage: false });
 })
 // POST ->Login Page
 app.post('/user/login', (req, res) => {
@@ -211,14 +215,16 @@ app.post('/user/login', (req, res) => {
   User.findOne({ email })
     .then((user) => {
       if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        // return res.status(404).json({ message: 'User not found' });
+        return res.render('login', { errorMessage: "User Not Exist.Register first" });
       }
 
       // Compare the provided password with the hashed password in the database
       bcrypt.compare(password, user.password)
         .then((isMatch) => {
           if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid password' });
+            // return res.status(401).json({ message: 'Invalid password' });
+            return res.render('login', { errorMessage: "Invalid Password" });
           }
 
           // Generate JWT token
@@ -226,17 +232,18 @@ app.post('/user/login', (req, res) => {
 
           // Set the token as a cookie
           res.cookie('token', token, { httpOnly: true });
-
           res.status(200).redirect("/note/show");
         })
         .catch((error) => {
           console.error('Error comparing passwords:', error);
-          res.status(500).json({ message: 'An error occurred while comparing passwords' });
+          // res.status(500).json({ message: 'An error occurred while comparing passwords' });
+          return res.render('login', { errorMessage: "Internal Server Error" });
         });
     })
     .catch((error) => {
       console.error('Error finding user:', error);
-      res.status(500).json({ message: 'An error occurred while finding user' });
+      // res.status(500).json({ message: 'An error occurred while finding user' });
+      return res.render('login', { errorMessage: "Internal Server Error" });
     });
 });  
 
@@ -244,7 +251,9 @@ app.post('/user/login', (req, res) => {
 app.get('/user/logout', (req, res) => {
   // Clear the "token" cookie by providing the cookie name
   res.clearCookie('token');
-  res.json({ message: 'Logout successful' });
+  // res.json({ message: 'Logout successful' });
+  // redirecting to the Home route
+  res.redirect("/")
 });
 
 // -----------------------------------USER APIS--------------------------------------------

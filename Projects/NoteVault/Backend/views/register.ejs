@@ -1,5 +1,8 @@
 <%- include("partials/header") -%>
 <h1>Registration Page</h1>
+<% if (errorMessage) { %>
+    <p style="color: red;"><%= errorMessage %></p>
+<% } %>
 <form method="post" action="/user/register">
     <input type="text" placeholder="Name" required name="name"><br>
     <input type="email" placeholder="Email" required name="email"><br>

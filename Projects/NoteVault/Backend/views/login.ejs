@@ -1,5 +1,8 @@
 <%- include("partials/header") -%>
 <h1>Welcome to the login page</h1>
+<% if (errorMessage) { %>
+    <p style="color: red;"><%= errorMessage %></p>
+<% } %>
 <form method="post" action="/user/login">
     <input type="email" placeholder="Email" required name="email"><br>
     <input type="password" placeholder="Password" required name="password"><br>
