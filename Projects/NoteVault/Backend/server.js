@@ -6,6 +6,9 @@ import cookieParser from 'cookie-parser';
 import ejs from 'ejs';
 import bodyParser from 'body-parser'
 
+// creating a global variable for success message
+var noteMessage = false;
+
 mongoose.connect('mongodb://127.0.0.1:27017/NoteVault')
     .then(() => {
       console.log('Connected to MongoDB');
@@ -93,11 +96,15 @@ const isAuthenticated = (req,res,next) =>{
         next();
       }
       else{
-        res.send("Internal server error")
+        // res.send("Internal server error")
+        const errorMessage = 'Internal server error';
+        res.render('error_template', { errorMessage });
       }
     }).catch((error) => {
       console.error('Server down', error);
-      res.status(500).json({ message: 'An error occurred while token verification' });
+      // res.status(500).json({ message: 'An error occurred while token verification' });
+      const errorMessage = 'An error occurred while token verification';
+      res.render('error_template', { errorMessage });
     });
   } else {
     // Cookie does not exist
@@ -125,11 +132,15 @@ const isAuthenticatedlogin = (req,res,next) =>{
         res.status(200).redirect("/note/show")
       }
       else{
-        res.send("Internal server error")
+        // res.send("Internal server error")
+        const errorMessage = 'Internal server error';
+        res.render('error_template', { errorMessage });
       }
     }).catch((error) => {
       console.error('Server down', error);
-      res.status(500).json({ message: 'An error occurred while token verification' });
+      // res.status(500).json({ message: 'An error occurred while token verification' });
+      const errorMessage = 'An error occurred while token verification';
+      res.render('error_template', { errorMessage });
     });
   } else {
     // Cookie does not exist
@@ -237,13 +248,17 @@ app.post('/user/login', (req, res) => {
         .catch((error) => {
           console.error('Error comparing passwords:', error);
           // res.status(500).json({ message: 'An error occurred while comparing passwords' });
-          return res.render('login', { errorMessage: "Internal Server Error" });
+          // return res.render('login', { errorMessage: "Internal Server Error" });
+          const errorMessage = 'Internal Server Error';
+          res.render('error_template', { errorMessage });
         });
     })
     .catch((error) => {
       console.error('Error finding user:', error);
       // res.status(500).json({ message: 'An error occurred while finding user' });
-      return res.render('login', { errorMessage: "Internal Server Error" });
+      // return res.render('login', { errorMessage: "Internal Server Error" });
+      const errorMessage = 'Internal Server Error';
+      res.render('error_template', { errorMessage });
     });
 });  
 
@@ -269,11 +284,14 @@ app.get('/note/show', isAuthenticated, (req, res) => {
     .then((notes) => {
       // res.status(200).json(notes);
       console.log(notes)
-      res.render("note",{notes : notes , userNAME : req.userNAME})
+      res.render("note",{notes : notes , userNAME : req.userNAME , successMessage : noteMessage})
+      noteMessage =false
     })
     .catch((error) => {
       console.error('Error fetching notes:', error);
-      res.status(500).json({ message: 'An error occurred while fetching the notes' });
+      // res.status(500).json({ message: 'An error occurred while fetching the notes' });
+      const errorMessage = 'An error occurred while fetching the notes';
+      res.render('error_template', { errorMessage });
     });
 });
 
@@ -296,11 +314,15 @@ app.post('/note/add', isAuthenticated, (req, res) => {
   // Save the notebook to the database
   notebook.save()
   .then(() => {
-    res.status(201).json({ message: 'Note added successfully' });
+    // res.status(201).json({ message: 'Note added successfully' });
+    noteMessage = "Note added successfully"
+    res.redirect("/note/show")
   })
   .catch((error) => {
     console.error('Error adding note:', error);
-    res.status(500).json({ message: 'An error occurred while adding the note' });
+    // res.status(500).json({ message: 'An error occurred while adding the note' });
+    const errorMessage = 'An error occurred while adding the notes';
+    res.render('error_template', { errorMessage });
   });
 });
 
@@ -314,13 +336,19 @@ app.post('/note/delete/:noteId', isAuthenticated, (req, res) => {
     .then((deletedNote) => {
       if (!deletedNote) {
         // Note not found or not authorized to delete
-        return res.status(404).json({ message: 'Note not found or unauthorized' });
+        // return res.status(404).json({ message: 'Note not found or unauthorized' });
+        const errorMessage = 'Note not found or unauthorized';
+        return res.render('error_template', { errorMessage });
       }
-      res.status(200).json({ message: 'Note deleted successfully' });
+      // res.status(200).json({ message: 'Note deleted successfully' });
+      noteMessage = "Note deleted successfully"
+      res.redirect("/note/show")
     })
     .catch((error) => {
       console.error('Error deleting note:', error);
-      res.status(500).json({ message: 'An error occurred while deleting the note' });
+      // res.status(500).json({ message: 'An error occurred while deleting the note' });
+      const errorMessage = 'An error occurred while deleting the note';
+      res.render('error_template', { errorMessage });
     });
 });
 
@@ -335,14 +363,19 @@ app.post('/note/update/:noteId', isAuthenticated, (req, res) => {
     .then((updatedNote) => {
       if (!updatedNote) {
         // Note not found or not authorized to update
-        return res.status(404).json({ message: 'Note not found or unauthorized' });
+        // return res.status(404).json({ message: 'Note not found or unauthorized' });
+        const errorMessage = 'Note not found or unauthorized';
+        return res.render('error_template', { errorMessage });
       }
-
-      res.status(200).json({ message: 'Note updated successfully', note: updatedNote });
+      // res.status(200).json({ message: 'Note updated successfully', note: updatedNote });
+      noteMessage = "Note updated successfully"
+      res.redirect("/note/show")
     })
     .catch((error) => {
       console.error('Error updating note:', error);
-      res.status(500).json({ message: 'An error occurred while updating the note' });
+      // res.status(500).json({ message: 'An error occurred while updating the note' });
+      const errorMessage = 'An error occurred while updating the note';
+      res.render('error_template', { errorMessage });
     });
 });
 
@@ -362,7 +395,9 @@ app.get('/note/search', isAuthenticated, (req, res) => {
     })
     .catch((error) => {
       console.error('Error searching notes:', error);
-      res.status(500).json({ message: 'An error occurred while searching notes' });
+      // res.status(500).json({ message: 'An error occurred while searching notes' });
+      const errorMessage = 'An error occurred while searching notes';
+      res.render('error_template', { errorMessage });
     });
 });
 

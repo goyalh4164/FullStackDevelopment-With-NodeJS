@@ -1,4 +1,27 @@
 <%- include("partials/header") -%>
+
+<div id="successMessage" class="success-message hidden">
+  <%= successMessage %>
+</div>
+
+<script>
+  // JavaScript code goes here
+  function showSuccessMessage(message) {
+    var successMessage = document.getElementById('successMessage');
+    successMessage.textContent = message;
+    successMessage.classList.remove('hidden');
+    setTimeout(function() {
+      successMessage.classList.add('hidden');
+    }, 3000); // 3000 milliseconds = 3 seconds
+  }
+
+  // Call the function to show the success message
+  if('<%= successMessage %>' !== 'false' ){
+    showSuccessMessage('<%= successMessage %>'); // Pass the server-side message to the function
+  }
+</script>
+
+
 <h1>Welcome , <%= userNAME %> </h1>
 <h1 class="text-center">Here Are your Notes</h1>
 <div class="text-center m-4">
