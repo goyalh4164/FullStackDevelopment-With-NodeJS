@@ -1,4 +1,17 @@
 .hidden {
     display: none;
 }
-  
+#title{
+    background-color: #ff4c68;
+    color: white;
+    font-size: 25px;
+}
+.testimonial-section{
+    height:auto;
+    background-color: #ef8172;
+    color: white;
+    font-size: 25px;
+}
+.testimonial-message{
+    background-color: antiquewhite;
+}
