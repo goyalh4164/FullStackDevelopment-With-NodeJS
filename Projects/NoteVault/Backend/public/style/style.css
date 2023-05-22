@@ -15,3 +15,50 @@
 .testimonial-message{
     background-color: antiquewhite;
 }
+.mtop-4, .my-4 {
+    margin-top: 7.5rem!important;
+    padding: 33px;
+}
+.login-form{
+    font-size: 30px;
+}
+.login-section{
+    color: white;
+    background-color: antiquewhite;
+}
+.group-login ::placeholder {
+    text-align: center;
+    font-size: 30px;
+}
+.login-label{
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-size: 50px;
+}
+.control-form{
+    text-align: center;
+    font-size: 30px;
+    width: 100%;
+}
+.login-button {
+    background-color: white;
+    color: black;
+    width: 80%;
+    margin-top: 20px;
+    font-size: inherit;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+.login-heading {
+    font-size: 4.5rem;
+    font-weight: bolder;
+    color: darkslategray;
+}
+.group-login {
+    margin-bottom: 1rem;
+    width: 115%;
+}
+.login-button:hover{
+    background-color: gainsboro;
+    color: darkblue;
+}
