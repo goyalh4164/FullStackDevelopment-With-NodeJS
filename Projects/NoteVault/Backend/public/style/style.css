@@ -62,3 +62,16 @@
     background-color: gainsboro;
     color: darkblue;
 }
+.note-nav{
+    background-color:#ff4c68;
+}
+.note-tag{
+    font-weight: 700;
+    background-color: chartreuse;
+    color: floralwhite;
+    border-radius: 3%;
+}
+.note-description{
+    background-color: aquamarine;
+    font-weight: 300;
+}
