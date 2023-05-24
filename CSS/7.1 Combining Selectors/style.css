@@ -1,0 +1,28 @@
+/* Write your code here: */
+/* group selector */
+h1,h2{
+    color: violet;
+}
+/* .box --> parent */
+/* .done --> child */
+/* upto one generation  */
+/* basically it will select the direct desendant */
+/* child selector */
+.box > .done{
+    background-color: red;
+}
+/* desecendant selector */
+/* select any child of the given parent */
+.box li{
+    color: blue;
+}
+
+/* chain selector */
+li.done{
+    color: green;
+}
+
+/* combining desecendant selector and chain selector */
+ul p.done{
+    background-color: aquamarine;
+}
