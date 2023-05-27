@@ -1,0 +1,35 @@
+body{
+    background-color: #f4f4fe;
+}
+.nav-route{
+    background-color: white;
+}
+.nav-buttons{
+    color : #FF7A0D;
+    font-weight: 700;
+}
+.home-page{
+    height: 100vh;
+}
+.intro{
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 40px;
+}
+.my-name{
+    color : #FF7A0D;
+    font-weight: 500px;
+}
+.about-btn{
+    color: white;
+    background-color : #FF7A0D;
+    border-radius: 20px;
+}
+.about-btn:hover{
+    scale: 1.03;
+    background-color: red;
+    color:white
+}
