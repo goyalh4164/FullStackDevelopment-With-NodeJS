@@ -1,0 +1,21 @@
+body{
+    background-color: #f4f4fe;
+}
+.nav-route{
+    background-color: white;
+}
+.nav-buttons{
+    color : #FF7A0D;
+    font-weight: 700;
+}
+.my-name{
+    color : #FF7A0D;
+    font-weight: 500px;
+}
+.about-para{
+    color: #000000a6;
+    margin-top: 20px;
+}
+.about-heading{
+    padding: 20px;
+}
