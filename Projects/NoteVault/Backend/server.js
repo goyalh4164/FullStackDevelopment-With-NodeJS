@@ -9,7 +9,7 @@ import bodyParser from 'body-parser'
 // creating a global variable for success message
 var noteMessage = false;
 
-mongoose.connect('mongodb://127.0.0.1:27017/NoteVault')
+mongoose.connect('mongodb+srv://goyalh216:goyal@scalable.xgg5tn0.mongodb.net/')
     .then(() => {
       console.log('Connected to MongoDB');
     })
